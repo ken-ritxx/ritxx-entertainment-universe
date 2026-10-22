@@ -95,20 +95,49 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 
 /* ============================================================= preloader */
 #pre{
-  position:fixed; inset:0; z-index:100; background:#05070a;
+  position:fixed; inset:0; z-index:100; background:#05070a; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
-  transition:opacity .8s var(--ease), visibility .8s;
+  transition:opacity 1s var(--ease) .35s, visibility 1s .35s;
 }
+#pre::before{ content:""; position:absolute; left:50%; top:50%; width:min(70vmin,620px); aspect-ratio:1;
+  transform:translate(-50%,-54%) scale(.85); border-radius:50%;
+  background:radial-gradient(circle at 50% 50%, rgba(224,35,28,.34), rgba(224,35,28,.10) 42%, transparent 68%);
+  filter:blur(8px); animation:preMoon 4.5s var(--ease-out) forwards, preBreath 6s ease-in-out 2s infinite; }
+#pre::after{ content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.75) 100%); }
+@keyframes preMoon{ from{ opacity:0; transform:translate(-50%,-40%) scale(.6);} to{ opacity:1; transform:translate(-50%,-54%) scale(1);} }
+@keyframes preBreath{ 50%{ filter:blur(14px); opacity:.8; } }
 #pre.done{ opacity:0; visibility:hidden; pointer-events:none; }
-.pre-in{ width:min(420px,74vw); text-align:center; }
-.pre-mark{ margin:0 auto 26px; width:44px; height:44px; opacity:.9; }
-.pre-mark svg{ width:100%; height:100%; display:block; }
-.pre-jp{ font-size:12px; letter-spacing:.5em; color:var(--bone-dim); margin-bottom:20px; }
-.pre-bar{ position:relative; height:1px; background:rgba(223,231,224,.14); overflow:hidden; }
-.pre-bar i{ position:absolute; inset:0 100% 0 0; background:var(--bone); transition:right .35s linear; }
-.pre-meta{ display:flex; justify-content:space-between; margin-top:12px;
-  font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
-.pre-meta b{ font-weight:500; color:var(--bone-dim); font-variant-numeric:tabular-nums; }
+#pre.done .pre-in{ transform:translateY(-18px); filter:blur(6px); opacity:0; }
+.pre-in{ position:relative; z-index:1; width:min(560px,86vw); text-align:center;
+  transition:transform 1s var(--ease-io), filter 1s var(--ease-io), opacity .9s var(--ease-io); }
+.pre-ring{ position:absolute; left:50%; top:46%; width:min(46vmin,380px); aspect-ratio:1; transform:translate(-50%,-50%);
+  pointer-events:none; opacity:.55; }
+.pre-ring circle{ fill:none; stroke:var(--vermilion); stroke-width:.6; stroke-dasharray:300; stroke-dashoffset:300;
+  stroke-linecap:round; animation:preRing 3.2s var(--ease-out) .2s forwards; transform-origin:50% 50%; }
+.pre-ring circle + circle{ stroke:rgba(223,231,224,.18); stroke-width:.3; stroke-dasharray:1 3; animation:preSpin 40s linear infinite; stroke-dashoffset:0; }
+@keyframes preRing{ to{ stroke-dashoffset:40; } }
+@keyframes preSpin{ to{ transform:rotate(360deg); } }
+.pre-jp{ font-family:'NotoJP',serif; font-size:11px; letter-spacing:.9em; padding-left:.9em; color:var(--vermilion);
+  margin-bottom:22px; opacity:0; animation:preUp 1.2s var(--ease-out) .25s forwards; }
+.pre-word{ font-family:Wordmark,Onest,sans-serif; font-weight:500; font-size:clamp(64px,13vw,150px);
+  line-height:.9; letter-spacing:.06em; color:var(--bone); display:flex; justify-content:center; margin-bottom:30px;
+  text-shadow:0 0 40px rgba(224,35,28,.25); }
+.pre-word span{ display:inline-block; opacity:0; transform:translateY(38%); filter:blur(14px);
+  animation:preLetter 1.4s var(--ease-out) forwards; }
+.pre-word span:nth-child(1){ animation-delay:.35s } .pre-word span:nth-child(2){ animation-delay:.47s }
+.pre-word span:nth-child(3){ animation-delay:.59s } .pre-word span:nth-child(4){ animation-delay:.71s; color:var(--vermilion) }
+.pre-word span:nth-child(5){ animation-delay:.83s; color:var(--vermilion) }
+@keyframes preLetter{ to{ opacity:1; transform:none; filter:blur(0); } }
+@keyframes preUp{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none; } }
+.pre-bar{ position:relative; height:1px; width:min(300px,60vw); margin:0 auto; background:rgba(223,231,224,.10); overflow:hidden;
+  opacity:0; animation:preUp 1s var(--ease-out) .9s forwards; }
+.pre-bar i{ position:absolute; inset:0 100% 0 0; background:linear-gradient(90deg, transparent, var(--vermilion) 40%, var(--bone));
+  box-shadow:0 0 12px var(--vermilion); transition:right .5s var(--ease); }
+.pre-meta{ display:flex; justify-content:space-between; width:min(300px,60vw); margin:14px auto 0;
+  font-size:9px; letter-spacing:.32em; text-transform:uppercase; color:var(--muted);
+  opacity:0; animation:preUp 1s var(--ease-out) 1s forwards; }
+.pre-meta b{ font-weight:400; color:var(--bone-dim); font-variant-numeric:tabular-nums; }
 
 /* ============================================================= nav */
 .nav{
@@ -894,17 +923,13 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 
 <!-- ============================================================ preloader -->
 <div id="pre">
+  <svg class="pre-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47"/><circle cx="50" cy="50" r="49"/></svg>
   <div class="pre-in">
-    <div class="pre-mark">
-      <svg viewBox="0 0 44 44" fill="none" aria-hidden="true">
-        <circle cx="22" cy="24" r="9.5" stroke="#e0231c" stroke-width="1.2"/>
-        <path d="M6 12h32M9.5 17h25M22 8v28" stroke="#dfe7e0" stroke-width="1.2"/>
-      </svg>
-    </div>
-    <div class="pre-word" style="font-family:Wordmark,Onest,sans-serif;font-weight:600;font-size:clamp(56px,10vw,120px);letter-spacing:.12em;line-height:1;color:var(--bone);margin-bottom:28px">ritxx</div>
+    <div class="pre-jp">影 の 門</div>
+    <div class="pre-word" aria-label="ritxx"><span>r</span><span>i</span><span>t</span><span>x</span><span>x</span></div>
     <div class="pre-bar"><i id="pre-fill"></i></div>
     <div class="pre-meta">
-      <span>Opening the gate to ritxx</span><b><span id="pre-pct">0</span>%</b>
+      <span>Listen · Watch · Read</span><b><span id="pre-pct">0</span>%</b>
     </div>
   </div>
 </div>
