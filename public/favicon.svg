@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="ritxx">
+  <defs>
+    <linearGradient id="ritxx-gate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5a3c"/>
+      <stop offset="1" stop-color="#c4140e"/>
+    </linearGradient>
+    <radialGradient id="ritxx-moon" cx="0.5" cy="0.42" r="0.62">
+      <stop offset="0" stop-color="#8e1a12"/>
+      <stop offset="1" stop-color="#3a0806"/>
+    </radialGradient>
+  </defs>
+  <rect width="32" height="32" fill="#05070a"/>
+  <circle cx="16" cy="13.4" r="7.6" fill="url(#ritxx-moon)"/>
+  <g fill="url(#ritxx-gate)">
+    <rect x="1.6" y="7.6" width="28.8" height="3.4" rx="0.7"/>
+    <rect x="5" y="13.4" width="22" height="2.6" rx="0.5"/>
+    <rect x="7.2" y="10.6" width="3.4" height="14.4" rx="0.6"/>
+    <rect x="21.4" y="10.6" width="3.4" height="14.4" rx="0.6"/>
+  </g>
+</svg>
