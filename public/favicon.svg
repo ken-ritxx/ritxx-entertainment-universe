@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="ritxx">
+  <defs>
+    <linearGradient id="ritxx-gate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5a3c"/>
+      <stop offset="1" stop-color="#c4140e"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" fill="#05070a"/>
+  <g fill="url(#ritxx-gate)">
+    <path d="M1.4 8.1 Q16 5.4 30.6 8.1 L30.6 11.5 Q16 9.2 1.4 11.5 Z"/>
+    <rect x="5.2" y="14" width="21.6" height="2.9" rx="0.5"/>
+    <path d="M7 11 L10.6 11 L10.2 26.4 L6.6 26.4 Z"/>
+    <path d="M21.4 11 L25 11 L25.4 26.4 L21.8 26.4 Z"/>
+  </g>
+</svg>
