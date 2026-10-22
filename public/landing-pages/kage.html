@@ -4689,7 +4689,7 @@ function queue() { TIMER ? setTimeout(() => frame(performance.now()), 16) : requ
 
 /* ======================================================== 14 · booting */
 const JOBS = [
-  ['Reading the type', () => document.fonts && document.fonts.load('600 320px Wordmark')],
+  ['Reading the type', () => document.fonts && Promise.race([document.fonts.load('600 320px Wordmark'), new Promise(r => setTimeout(r, 2500))])],
   ['Pouring the ground', () => { initGL(); WORLD.uT = { value: 0 }; buildRig(); buildLights(); }],
   ['Cutting the approach', () => buildShell()],
   ['Raising the hall', () => buildTemple()],
@@ -4750,7 +4750,7 @@ function boot() {
       if (i < JOBS.length) setTimeout(step, 16); else setTimeout(start, 220);
     };
     let r;
-    try { r = j[1](); }
+    try { r = j[1](); if (r && r.then) r = Promise.race([r, new Promise(res => setTimeout(res, 6000))]); }
     catch (err) {
       console.error('[kage] job "' + j[0] + '" failed', err);
       if (i <= 1) return fallback(err);          /* no renderer, no scene */
