@@ -417,6 +417,15 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .card:hover .card-ar{ opacity:1; transform:none; }
 .card-meta{ display:flex; justify-content:space-between; margin-top:12px;
   font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+/* Android app download pill — vermilion gate accent, sits in the card's meta row */
+.apk-dl{ display:inline-flex; align-items:center; gap:.45em; padding:.45em .9em;
+  border:1px solid rgba(224,35,28,.55); background:rgba(224,35,28,.10); color:#dfe7e0;
+  font:inherit; letter-spacing:.16em; text-transform:uppercase; border-radius:2px;
+  cursor:pointer; transition:background .35s var(--ease-out), border-color .35s var(--ease-out);
+  white-space:nowrap; }
+.apk-dl svg{ width:9px; height:11px; flex:none; }
+.apk-dl:hover{ background:rgba(224,35,28,.30); border-color:#e0231c; }
+
 
 /* — chapter III: curriculum */
 .cur-head{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.72fr); gap:clamp(28px,5vw,90px); align-items:end; margin-bottom:clamp(34px,6vh,72px); }
@@ -1063,7 +1072,12 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
         <i class="glow" style="--gx:80.2%; --gy:23.9%; --gr:22%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(255,142,108,.50); --gc2:rgba(212,56,38,.24)"></i>
         <div class="card-lab"><b>Music</b><span class="jp">音楽</span></div>
       </div>
-      <div class="card-meta"><span>Listen — ritxx music</span><span>01 / 03</span></div>
+        <div class="card-meta"><span>Listen — ritxx music</span>
+          <span class="apk-dl" data-apk="/__l5e/assets-v1/57b31b77-9d08-45c3-af41-d05fbb99ce72/ritxx-music.apk" data-cursor role="button" tabindex="0" aria-label="Download the ritxx music Android app">
+            <svg viewBox="0 0 9 11" fill="none" aria-hidden="true"><path d="M4.5 0v6.6M1.6 4l2.9 2.9L7.4 4M0 9.7h9" stroke="#e0231c" stroke-width="1.2"/></svg>
+            Download app
+          </span><span>01 / 03</span></div>
+
     </a>
     <a class="card" href="https://ritxx-ken-watch-club.ichigokurosaki8398.workers.dev/" target="_top" style="display:block;color:inherit;text-decoration:none" data-rv="up" data-view="1" data-cursor>
       <div class="card-fr" data-frame>
@@ -1191,7 +1205,9 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       <li><a href="https://ritxx-listen.ichigokurosaki8398.workers.dev/" target="_top" data-cursor>Music</a></li>
       <li><a href="https://ritxx-ken-watch-club.ichigokurosaki8398.workers.dev/" target="_top" data-cursor>Movies &amp; Anime</a></li>
       <li><a href="https://ritxx-read.ichigokurosaki8398.workers.dev/" target="_top" data-cursor>Manga</a></li>
+      <li><a class="apk-foot" href="/__l5e/assets-v1/57b31b77-9d08-45c3-af41-d05fbb99ce72/ritxx-music.apk" download="ritxx-music.apk" data-cursor>Music — Android app (APK)</a></li>
     </ul></div>
+
     <div><h4>Hub</h4><ul>
       <li><a href="#gate" data-cursor>About</a></li>
       <li><a href="#pathways" data-cursor>Realms</a></li>
@@ -4833,5 +4849,21 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 else addEventListener('DOMContentLoaded', boot);
 })();
 </script>
+<script>
+  /* Android app download pills: hidden same-origin anchor with a download hint.
+     stopPropagation + preventDefault keep the parent card link from firing. */
+  document.querySelectorAll('.apk-dl').forEach(function (el) {
+    var go = function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var a = document.createElement('a');
+      a.href = el.getAttribute('data-apk');
+      a.download = 'ritxx-music.apk';
+      document.body.appendChild(a); a.click(); a.remove();
+    };
+    el.addEventListener('click', go);
+    el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') go(e); });
+  });
+</script>
 </body>
 </html>
+
