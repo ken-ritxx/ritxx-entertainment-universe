@@ -4849,5 +4849,21 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 else addEventListener('DOMContentLoaded', boot);
 })();
 </script>
+<script>
+  /* Android app download pills: hidden same-origin anchor with a download hint.
+     stopPropagation + preventDefault keep the parent card link from firing. */
+  document.querySelectorAll('.apk-dl').forEach(function (el) {
+    var go = function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var a = document.createElement('a');
+      a.href = el.getAttribute('data-apk');
+      a.download = 'ritxx-music.apk';
+      document.body.appendChild(a); a.click(); a.remove();
+    };
+    el.addEventListener('click', go);
+    el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') go(e); });
+  });
+</script>
 </body>
 </html>
+
