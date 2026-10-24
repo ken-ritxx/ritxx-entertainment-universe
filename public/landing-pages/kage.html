@@ -2348,17 +2348,17 @@ const vpH = () => document.documentElement.clientHeight || innerHeight;
 let renderer, scene, camera, maxAniso = 1;
 const HI = qs('q', COARSE ? 'low' : 'high');
 const LOW = HI === 'low';
-const WANT_POST    = qs('post', '1') !== '0';
+const WANT_POST    = qs('post', LOW ? '0' : '1') !== '0';
 const WANT_SHADOW  = qs('shadow', LOW ? '0' : '1') !== '0';
-const DPR_CAP      = qn('dpr', LOW ? 1.4 : 1.8);
+const DPR_CAP      = qn('dpr', LOW ? 1.1 : 1.8);
 /* the renderer trades resolution for frame rate on its own — the scene is
    fill-bound (five big alpha-blended veils plus a bloom chain), so pixels
    are the only knob worth turning on unknown hardware */
-const PERF = { scale: 1, acc: 0, n: 0, locked: qs('adapt', '1') === '0' };
+const PERF = { scale: LOW ? .82 : 1, acc: 0, n: 0, locked: qs('adapt', '1') === '0' };
 
 function initGL() {
   if (qs('nogl', '0') !== '0' || !window.THREE) throw new Error('webgl disabled');
-  renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !WANT_POST, alpha: false, powerPreference: 'high-performance' });
+  renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !WANT_POST && !LOW, alpha: false, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, DPR_CAP));
   /* updateStyle stays on: the stylesheet sizes the canvas at 100% of the
      initial containing block, which is the very box that runs wide on a
