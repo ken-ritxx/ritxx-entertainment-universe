@@ -2371,7 +2371,7 @@ const DPR_CAP      = qn('dpr', COARSE ? .95 : 1.25);
 /* the renderer trades resolution for frame rate on its own — the scene is
    fill-bound (five big alpha-blended veils plus a bloom chain), so pixels
    are the only knob worth turning on unknown hardware */
-const PERF = { scale: COARSE ? .76 : .88, acc: 0, n: 0, locked: COARSE || qs('adapt', '1') === '0' };
+const PERF = { scale: COARSE ? .64 : .88, acc: 0, n: 0, locked: qs('adapt', '1') === '0' };
 
 function initGL() {
   if (qs('nogl', '0') !== '0' || !window.THREE) throw new Error('webgl disabled');
@@ -4778,7 +4778,7 @@ function frame(now) {
     if (PERF.n >= 40 || PERF.acc > .9) {
       const avg = PERF.acc / PERF.n; PERF.acc = 0; PERF.n = 0;
       if (avg > .0230 && PERF.scale > .55) { PERF.scale = Math.max(.55, PERF.scale * (avg > .05 ? .64 : .85)); resize(); }
-      else if (avg < .0138 && PERF.scale < 1) { PERF.scale = Math.min(1, PERF.scale + .08); resize(); }
+      else if (!COARSE && avg < .0138 && PERF.scale < 1) { PERF.scale = Math.min(1, PERF.scale + .08); resize(); }
     }
   }
   RIG.prog = progressFor(scrollY);
@@ -4792,7 +4792,7 @@ function frame(now) {
   }
 
   applyCamera();
-  if (!COARSE || now - lastSceneRender >= 1000 / 40) {
+  if (!COARSE || now - lastSceneRender >= 1000 / 30) {
     updateWorld(dt);
     render();
     lastSceneRender = now;
