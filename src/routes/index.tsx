@@ -25,7 +25,7 @@ function Index() {
     <div className="fixed inset-0 bg-background">
       <iframe
         title="ritxx"
-        src="/landing-pages/kage.html?v=9"
+        src="/landing-pages/kage.html?v=10"
         className="absolute inset-0 block h-full w-full border-0"
       />
     </div>
