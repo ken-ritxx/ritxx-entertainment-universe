@@ -2671,11 +2671,11 @@ const HI = qs('q', COARSE ? 'low' : 'high');
 const LOW = HI === 'low';
 const WANT_POST    = qs('post', LOW ? '0' : '1') !== '0';
 const WANT_SHADOW  = qs('shadow', LOW ? '0' : '1') !== '0';
-const DPR_CAP      = qn('dpr', LOW ? 1.1 : 1.8);
+const DPR_CAP      = qn('dpr', COARSE ? .95 : 1.8);
 /* the renderer trades resolution for frame rate on its own — the scene is
    fill-bound (five big alpha-blended veils plus a bloom chain), so pixels
    are the only knob worth turning on unknown hardware */
-const PERF = { scale: LOW ? .82 : 1, acc: 0, n: 0, locked: qs('adapt', '1') === '0' };
+const PERF = { scale: COARSE ? .76 : (LOW ? .82 : 1), acc: 0, n: 0, locked: qs('adapt', '1') === '0' };
 
 function initGL() {
   if (qs('nogl', '0') !== '0' || !window.THREE) throw new Error('webgl disabled');
@@ -5150,7 +5150,7 @@ function cyberpunkCity() {
     const geo=new THREE.BufferGeometry().setFromPoints(pts);const line=new THREE.Line(geo,railMat);city.add(line);rails.push(line);
   }
   const rng=mulberry32(12119);
-  for(let row=0;row<24;row++){
+  for(let row=0;row<(COARSE?12:24);row++){
     const z=12-row*4.55;
     for(const side of [-1,1]){
       const width=3.4+rng()*4.8,height=12+rng()*24,depth=3+rng()*5;
@@ -5158,7 +5158,7 @@ function cyberpunkCity() {
       const geom=new THREE.BoxGeometry(width,height,depth);
       const tower=new THREE.Mesh(geom,buildingMat);
       tower.position.set(x,-1.25+height/2,z);city.add(tower);
-      if(row%2===0){
+      if(COARSE?row%4===0:row%2===0){
         const edgeMat=new THREE.LineBasicMaterial({color:(row+side)%3===0?0xff0055:0x00f0ff,transparent:true,opacity:.50});
         const edge=new THREE.LineSegments(new THREE.EdgesGeometry(geom),edgeMat);
         edge.position.copy(tower.position);city.add(edge);
@@ -5202,7 +5202,7 @@ function cyberpunkCity() {
     const gantry=new THREE.Mesh(new THREE.BoxGeometry(31,.22,.32),i%2?cyan:magenta);
     gantry.position.set(0,14.5,z-4);city.add(gantry);
   });
-  const n=150,positions=new Float32Array(n*6),colors=new Float32Array(n*6),drops=[];
+  const n=COARSE?44:150,positions=new Float32Array(n*6),colors=new Float32Array(n*6),drops=[];
   for(let i=0;i<n;i++){
     const x=(rng()-.5)*42,y=-1+rng()*28,z=8-rng()*106,len=.7+rng()*2.4,speed=11+rng()*28,hot=rng()>.5;
     drops.push({x,y,z,len,speed});
@@ -5215,7 +5215,7 @@ function cyberpunkCity() {
   rainGeo.setAttribute('color',new THREE.BufferAttribute(colors,3));
   const rainMat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.74,blending:THREE.AdditiveBlending});
   city.add(new THREE.LineSegments(rainGeo,rainMat));
-  const pn=96,pPos=new Float32Array(pn*3),particles=[];
+  const pn=COARSE?28:96,pPos=new Float32Array(pn*3),particles=[];
   for(let i=0;i<pn;i++){const p={x:(rng()-.5)*38,y:-1+rng()*24,z:6-rng()*100,v:.4+rng()*1.8,phase:rng()*TAU};particles.push(p);pPos.set([p.x,p.y,p.z],i*3);}
   const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));
   const pMat=new THREE.PointsMaterial({color:0xff0055,size:.12,transparent:true,opacity:.78,blending:THREE.AdditiveBlending});
@@ -5396,15 +5396,16 @@ else addEventListener('DOMContentLoaded', boot);
     }
   }
   function tick(now){
-    raf=0;if(document.hidden)return;
+    raf=0;if(document.hidden||!document.documentElement.classList.contains('no-webgl'))return;
     if(now-last<40){raf=requestAnimationFrame(tick);return;}
     var elapsed=last?Math.min(now-last,80):40;last=now;
     if(!reduced)for(var i=0;i<rain.length;i++){rain[i].y+=rain[i].speed*elapsed/1000;if(rain[i].y>h){rain[i].y=-rain[i].len;rain[i].x=rand()*w;}}
     draw(now);if(!reduced)raf=requestAnimationFrame(tick);
   }
-  function start(){if(reduced){draw(0);return;}if(!raf&&!document.hidden)raf=requestAnimationFrame(tick);}
+  function start(){if(!document.documentElement.classList.contains('no-webgl')){if(raf)cancelAnimationFrame(raf);raf=0;return;}if(reduced){draw(0);return;}if(!raf&&!document.hidden)raf=requestAnimationFrame(tick);}
   window.addEventListener('resize',resize,{passive:true});
   document.addEventListener('visibilitychange',function(){if(document.hidden){if(raf)cancelAnimationFrame(raf);raf=0;}else start();});
+  new MutationObserver(start).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
   resize();start();
 })();
 </script>
