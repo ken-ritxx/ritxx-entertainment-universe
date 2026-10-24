@@ -5335,8 +5335,6 @@ else addEventListener('DOMContentLoaded', boot);
       el.style.setProperty('--ritxx-rotate-x',(Math.max(-1,Math.min(1,relative))*-2.4).toFixed(1)+'deg');
     });
     document.documentElement.style.setProperty('--ritxx-bg-shift',(-Math.min(window.scrollY*.018,20)).toFixed(1)+'px');
-    return;
-    });
   }
   function requestDepth(){if(!frame)frame=requestAnimationFrame(updateDepth);}
   window.addEventListener('scroll',requestDepth,{passive:true});
