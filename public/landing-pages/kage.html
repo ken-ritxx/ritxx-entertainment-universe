@@ -1239,6 +1239,35 @@ body{background:#070711;color:var(--bone);font-weight:400;}
   .ritxx-reveal{opacity:1;translate:none;transition:none;}
   #cyber-bg{display:none;}
 }
+
+/* Brand marks and scroll-linked 3D depth. */
+#cyber-bg{top:-3vh;height:106vh;transform:translate3d(0,var(--ritxx-bg-shift,0px),0);}
+#pathways .card{perspective:1100px;transform-style:preserve-3d;}
+#pathways .card-fr,.les{
+  transform-style:preserve-3d;
+  transform:perspective(1100px) rotateX(var(--ritxx-rotate-x,0deg));
+  transition:transform .45s var(--ease-out),border-color .3s,box-shadow .3s;
+  backface-visibility:hidden;
+}
+.realm-mark{
+  position:absolute;z-index:2;left:50%;top:15%;width:clamp(88px,10vw,132px);
+  aspect-ratio:1;translate:-50% 0;display:grid;place-items:center;
+  filter:drop-shadow(0 14px 32px rgba(0,0,0,.34));
+  transform:translateZ(54px);
+  transition:transform .45s var(--ease-out),filter .45s;
+}
+.realm-mark svg{width:100%;height:100%;overflow:visible;}
+.realm-mark--music{filter:drop-shadow(0 0 24px rgba(216,0,255,.32));}
+.realm-mark--watch{filter:drop-shadow(0 0 24px rgba(242,51,72,.28));}
+.realm-mark--manga{filter:drop-shadow(0 0 24px rgba(100,231,255,.28));}
+#pathways .card:hover .realm-mark{transform:translateZ(76px) scale(1.06);}
+@media(max-width:560px){
+  .realm-mark{width:106px;top:14%;}
+}
+@media(prefers-reduced-motion:reduce){
+  #cyber-bg{transform:none;}
+  #pathways .card-fr,.les{transform:none;transition:none;}
+}
 </style>
 </head>
 <body data-layout-hero="b" data-layout-story="b" data-layout-gallery="b"
@@ -1399,6 +1428,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
   <div class="cards" id="cards">
     <a class="card" href="https://ritxx-listen.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none" data-rv="up" data-view="0" data-cursor>
       <div class="card-fr" data-frame>
+        <div class="realm-mark realm-mark--music" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ritxxMusicGradient" x1="19" y1="17" x2="101" y2="96" gradientUnits="userSpaceOnUse"><stop stop-color="#8500ff"/><stop offset=".52" stop-color="#df00ed"/><stop offset="1" stop-color="#ff1684"/></linearGradient></defs><path d="M25 20c0-9 8-14 16-9l58 34c8 5 8 14 0 19L39 99c-8 5-14 1-14-8V20Z" fill="url(#ritxxMusicGradient)"/><path d="M55 39v43a15 15 0 1 1-10-14V29l26 15" stroke="#0b0814" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="84" r="15" fill="url(#ritxxMusicGradient)"/></svg></div>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:80.2%; --gy:23.9%; --gr:22%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(255,142,108,.50); --gc2:rgba(212,56,38,.24)"></i>
         <div class="card-lab"><b>Music</b><span class="jp">音楽</span></div>
@@ -1412,6 +1442,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
     </a>
     <a class="card" href="https://ritxx-ken-watch-club.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none" data-rv="up" data-view="1" data-cursor>
       <div class="card-fr" data-frame>
+        <div class="realm-mark realm-mark--watch" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="54" fill="#08090f" stroke="#202332" stroke-width="2"/><circle cx="60" cy="60" r="32" stroke="#f4f4f7" stroke-width="12"/><path d="M55 46c0-3 3-5 6-3l18 13c3 2 3 5 0 7L61 76c-3 2-6 0-6-3V46Z" fill="#fff"/><path d="m79 18 3.5 7.5L90 29l-7.5 3.5L79 40l-3.5-7.5L68 29l7.5-3.5L79 18Z" fill="#fff"/><path d="m96 39 2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z" fill="#fff"/><g fill="#f23348"><circle cx="25" cy="81" r="2.3"/><circle cx="18" cy="90" r="2"/><circle cx="28" cy="96" r="1.8"/><circle cx="39" cy="101" r="1.6"/><circle cx="15" cy="78" r="1.6"/><circle cx="20" cy="104" r="1.4"/></g></svg></div>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow glow--flame" style="--gx:70.5%; --gy:47.2%; --gr:14%; --gt:3.7s; --gt2:5.3s; --gc1:rgba(255,198,124,.62); --gc2:rgba(226,118,40,.30)"></i>
         <div class="card-lab"><b>Movies &amp; Anime</b><span class="jp">映画</span></div>
@@ -1424,6 +1455,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
     </a>
     <a class="card" href="https://ritxx-read.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none" data-rv="up" data-view="2" data-cursor>
       <div class="card-fr" data-frame>
+        <div class="realm-mark realm-mark--manga" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ritxxMangaGradient" x1="22" y1="25" x2="98" y2="98" gradientUnits="userSpaceOnUse"><stop stop-color="#64e7ff"/><stop offset=".5" stop-color="#a879ff"/><stop offset="1" stop-color="#ff55c8"/></linearGradient></defs><path d="M19 30c15-7 28-5 41 4v67c-14-9-28-11-41-5V30Z" fill="#0d1026" stroke="url(#ritxxMangaGradient)" stroke-width="4" stroke-linejoin="round"/><path d="M101 30c-15-7-28-5-41 4v67c14-9 28-11 41-5V30Z" fill="#11132d" stroke="url(#ritxxMangaGradient)" stroke-width="4" stroke-linejoin="round"/><path d="M28 42c9-3 17-1 24 3v5c-7-4-15-6-24-3v-5Zm0 13c9-3 17-1 24 3v5c-7-4-15-6-24-3v-5Zm40-10c7-4 15-6 24-3v5c-9-3-17-1-24 3v-5Zm0 13c7-4 15-6 24-3v5c-9-3-17-1-24 3v-5Z" fill="#e8e5ff"/><path d="m60 23 2.5 6L69 32l-6.5 2.5L60 41l-2.5-6.5L51 32l6.5-3L60 23Z" fill="#ff62d1"/></svg></div>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:48.0%; --gy:16.8%; --gr:20%; --gt:7.3s; --gt2:11.2s; --gc1:rgba(255,138,104,.52); --gc2:rgba(208,54,36,.24)"></i>
         <div class="card-lab"><b>Manga</b><span class="jp">漫画</span></div>
@@ -5300,6 +5332,10 @@ else addEventListener('DOMContentLoaded', boot);
       var relative=(r.top+r.height*.5-mid)/Math.max(window.innerHeight,1);
       var shift=Math.max(-1,Math.min(1,relative))*((index%2)?-10:10);
       el.style.setProperty('--ritxx-shift',shift.toFixed(1)+'px');
+      el.style.setProperty('--ritxx-rotate-x',(Math.max(-1,Math.min(1,relative))*-2.4).toFixed(1)+'deg');
+    });
+    document.documentElement.style.setProperty('--ritxx-bg-shift',(-Math.min(window.scrollY*.018,20)).toFixed(1)+'px');
+    return;
     });
   }
   function requestDepth(){if(!frame)frame=requestAnimationFrame(updateDepth);}
