@@ -12,16 +12,16 @@
 <style>
 /* ============================================================= tokens */
 :root{
-  --ink:#080611;          /* page black */
-  --ink-2:#100b1b;        /* raised black */
-  --bone:#f2edff;         /* the pale sage white of the wordmark */
-  --bone-dim:#c4b8d8;
-  --muted:#867b99;
-  --line:rgba(219,185,255,.16);
-  --line-soft:rgba(219,185,255,.08);
-  --vermilion:#e448d3;
-  --ember:#b450ff;
-  --gold:#b99aff;
+  --ink:#05050a;          /* page black */
+  --ink-2:#0c0d14;        /* raised black */
+  --bone:#f4f7ff;         /* the pale sage white of the wordmark */
+  --bone-dim:#c1c8d8;
+  --muted:#7f8ba2;
+  --line:rgba(0,240,255,.18);
+  --line-soft:rgba(0,240,255,.09);
+  --vermilion:#ff0055;
+  --ember:#00f0ff;
+  --gold:#00f0ff;
   --pad:clamp(20px, 3.4vw, 56px);
   --nav-h:84px;
   --ease:cubic-bezier(.22,.61,.36,1);
@@ -974,7 +974,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     box-shadow:0 22px 62px rgba(0,0,0,.44),0 0 30px rgba(180,80,255,.18);
   }
 }
-#pathways .card-meta span:first-child{ color:#e7caff; }
+#pathways .card-meta span:first-child{ color:#b9f7ff; }
 .apps-note{
   border:1px solid rgba(214,147,255,.2);
   border-radius:16px;
@@ -1028,7 +1028,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
 }
 .nav::after{left:20px;right:20px;background:rgba(133,205,255,.16);opacity:1;}
 .brand-tx b{letter-spacing:.20em;color:#fff;}
-.nav-link{color:#b6b5d1;}
+.nav-link{color:#b8c5d6;}
 .nav-link.on{color:#fff;}
 .nav-link.on::after{height:2px;border-radius:99px;background:linear-gradient(90deg,var(--vermilion),var(--ember));}
 .nav-burger i{background:linear-gradient(90deg,var(--vermilion),var(--ember));}
@@ -1039,7 +1039,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
     linear-gradient(180deg,rgba(5,5,16,.30),transparent);
 }
 .hero-top{max-width:min(900px,78vw);padding-top:calc(var(--nav-h) + clamp(44px,10vh,110px));}
-.hero .eyebrow{font-size:11px;letter-spacing:.28em;color:#c2b8e6;}
+.hero .eyebrow{font-size:11px;letter-spacing:.28em;color:#b9f7ff;}
 .hero .eyebrow .dot{background:var(--ember);box-shadow:0 0 14px var(--ember);}
 .hero .h-hero{
   font-size:clamp(76px,17vw,190px);line-height:.88;letter-spacing:-.075em;
@@ -1079,7 +1079,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
   mask-image:none;-webkit-mask-image:none;
 }
 .sec-head{max-width:1280px;margin:0 auto clamp(28px,4vh,48px);}
-.sec-head .k{color:#aaa9ca;}
+.sec-head .k{color:#b8c5d6;}
 .sec-head .k b{color:var(--ember);}
 .rule{background:linear-gradient(90deg,rgba(106,213,255,.38),rgba(191,130,255,.08));}
 .gate-grid,.gate-stats,.cur-head,.cur,.cards,.apps-note,.fin>*{
@@ -1097,7 +1097,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
 }
 .gate-stats div{padding:12px 18px;border-radius:14px;background:rgba(18,18,38,.62);}
 .gate-stats div b{color:var(--ember);}
-.gate-stats div span{color:#aaa9c8;}
+.gate-stats div span{color:#b8c5d6;}
 #pathways .apps-note{
   display:flex;align-items:center;gap:16px;max-width:1280px;margin:0 auto 30px;
   padding:18px 22px;border:1px solid rgba(153,140,235,.22);
@@ -1150,7 +1150,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
 #pathways .card-meta{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
   margin-top:12px;padding:12px 14px;border:1px solid rgba(148,137,224,.15);
-  border-radius:14px;background:rgba(16,16,34,.68);color:#aaa9c8;
+  border-radius:14px;background:rgba(16,16,34,.68);color:#b8c5d6;
   font-size:11px;letter-spacing:.04em;
 }
 #pathways .card-meta .apk-dl{font-size:10px;padding:8px 12px;}
@@ -1168,36 +1168,36 @@ body{background:#070711;color:var(--bone);font-weight:400;}
 }
 .les:hover{border-color:rgba(101,230,255,.48);box-shadow:0 0 26px rgba(101,230,255,.10);}
 .les h3{color:#f5f2ff;}
-.les p{color:#b9b7d0;}
+.les p{color:#c1c8d8;}
 .les .k,.les .t{color:var(--ember);}
 .les .bar{background:linear-gradient(90deg,var(--vermilion),var(--ember));}
 #eternity{
   margin:4vh var(--pad) 8vh;padding:clamp(46px,8vw,104px);
-  border:1px solid rgba(162,139,255,.24);border-radius:30px;
-  background:radial-gradient(ellipse at 80% 10%,rgba(91,69,183,.20),transparent 45%),
-    linear-gradient(145deg,rgba(17,18,43,.92),rgba(8,9,22,.94));
-  box-shadow:0 24px 90px rgba(0,0,0,.28),0 0 58px rgba(139,79,255,.08);
+  border:1px solid rgba(0,240,255,.24);border-radius:30px;
+  background:radial-gradient(ellipse at 80% 10%,rgba(0,240,255,.10),transparent 45%),
+    linear-gradient(145deg,rgba(12,14,22,.94),rgba(5,5,10,.96));
+  box-shadow:0 24px 90px rgba(0,0,0,.28),0 0 58px rgba(0,240,255,.08);
   overflow:hidden;
 }
 #eternity{background:linear-gradient(90deg,rgba(5,5,10,.94),rgba(5,5,10,.55) 62%,rgba(5,5,10,.28)),url('secret-pathways-assets/generated/lucy-david-moon.jpeg') center 48%/cover no-repeat;border-color:rgba(0,240,255,.36);}
 #eternity::before{
   content:"";position:absolute;inset:auto -6% -48% 46%;height:90%;
-  background:radial-gradient(ellipse,rgba(63,194,255,.14),transparent 67%);pointer-events:none;
+  background:radial-gradient(ellipse,rgba(0,240,255,.14),transparent 67%);pointer-events:none;
 }
 #eternity>*{position:relative;z-index:1;}
-#eternity .eyebrow{color:#beb5dd;}
+#eternity .eyebrow{color:#b9f7ff;}
 #eternity .body-lg{max-width:650px;color:#cbc8e0;}
 .cta{
   border:1px solid rgba(101,230,255,.38);border-radius:999px;
   background:rgba(21,24,48,.8);color:#f4f2ff;
   box-shadow:0 0 28px rgba(101,230,255,.08);
 }
-.cta:hover{background:linear-gradient(100deg,#ad43e6,#3cb7d9);border-color:transparent;color:#fff;}
+.cta:hover{background:linear-gradient(100deg,#ff0055,#00f0ff);border-color:transparent;color:#fff;}
 .foot{
   padding:clamp(44px,7vh,84px) var(--pad) 30px;
   background:linear-gradient(180deg,rgba(8,8,22,.15),rgba(8,8,22,.72));
 }
-.foot h4{color:#aaa9c8;}
+.foot h4{color:#b8c5d6;}
 .foot li a{color:#b3b2cf;}
 .foot li a:hover{color:var(--ember);}
 .foot-brand p{color:#9696b7;}
@@ -1286,11 +1286,11 @@ body{background:#070711;color:var(--bone);font-weight:400;}
 <div id="pre">
   <svg class="pre-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47"/><circle cx="50" cy="50" r="49"/></svg>
   <div class="pre-in">
-    <div class="pre-jp">ritxx の 門</div>
+    <div class="pre-jp">RITXX // NETWORK</div>
     <div class="pre-word" aria-label="ritxx"><span>r</span><span>i</span><span>t</span><span>x</span><span>x</span></div>
     <div class="pre-bar"><i id="pre-fill"></i></div>
     <div class="pre-meta">
-      <span>Listen · Watch · Read</span><b><span id="pre-pct">0</span>%</b>
+      <span>CONNECT · WATCH · READ</span><b><span id="pre-pct">0</span>%</b>
     </div>
   </div>
 </div>
@@ -1309,8 +1309,8 @@ body{background:#070711;color:var(--bone);font-weight:400;}
     <a class="nav-link" href="https://ritxx-listen.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" data-cursor><span>Music</span><span class="alt">音楽</span></a>
     <a class="nav-link" href="https://ritxx-ken-watch-club.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" data-cursor><span>Movies &amp; Anime</span><span class="alt">映画</span></a>
     <a class="nav-link" href="https://ritxx-read.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" data-cursor><span>Manga</span><span class="alt">漫画</span></a>
-    <a class="nav-link" href="#pathways" data-cursor><span>Realms</span><span class="alt">世界</span></a>
-    <a class="nav-link" href="https://github.com/ken-ritxx?tab=repositories" target="_blank" rel="noopener" data-cursor><span>GitHub</span><span class="alt">コード</span></a>
+    <a class="nav-link" href="#pathways" data-cursor><span>Sectors</span><span class="alt">世界</span></a>
+    <a class="nav-link" href="https://github.com/ken-ritxx?tab=repositories" target="_blank" rel="noopener" data-cursor><span>GitNetwork</span><span class="alt">コード</span></a>
   </nav>
   <button class="nav-burger" aria-label="Menu" data-cursor><i></i><i></i></button>
 </header>
@@ -1320,7 +1320,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
 <!-- ============================================================ hero -->
 <section class="hero" id="hero" data-cam="0">
   <div class="hero-top">
-    <div class="eyebrow" data-rv="fade"><span class="dot"></span> The gate is open</div>
+    <div class="eyebrow" data-rv="fade"><span class="dot"></span> THE GRID IS LIVE</div>
     <h1 class="display h-hero">
       <span class="mask-line"><span>rit<span class="ritxx-accent">xx</span></span></span>
     </h1>
@@ -1330,7 +1330,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
   <div class="hero-spacer"></div>
 
   <div class="hero-foot">
-    <div class="hero-cue" data-rv="fade"><span>Scroll to enter</span><span class="track"><i></i></span></div>
+    <div class="hero-cue" data-rv="fade"><span>Scroll to jack in</span><span class="track"><i></i></span></div>
     <div class="chapters" id="chips">
       <div class="chip" data-chip="0" data-rv="up" data-cursor onclick="window.top.location.href='https://ritxx-listen.ichigokurosaki8398.workers.dev/'"><span class="num">01</span>
         <span class="tx"><b>Listen</b><p>Stream the music that sets the mood.</p></span></div>
@@ -1348,7 +1348,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
          runs on down behind the caption instead of stopping at the frame -->
     <span class="peek-fr" data-frame></span>
     <span class="peek-play"><svg viewBox="0 0 22 22" fill="none"><path d="M8 5.6 16.4 11 8 16.4z" fill="#dfe7e0"/></svg></span>
-    <span class="peek-cap"><b class="jp">山門</b><i>Sanmon — before the bell</i></span>
+    <span class="peek-cap"><b class="jp">山門</b><i>NEON GATEWAY — SECURE ACCESS</i></span>
   </a>
 
   <div class="word-fb" aria-hidden="true">RITXX</div>
@@ -1373,7 +1373,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
     </span>
   </div>
   <div class="sec-head" data-rv="fade">
-    <span class="k"><b>01</b> — The Hub</span><span class="rule"></span><span class="k jp">山門</span>
+    <span class="k"><b>01</b> — The Network</span><span class="rule"></span><span class="k jp">山門</span>
   </div>
   <div class="gate-grid">
     <h2 class="display h-sec" data-rv="up">Press play.<br>Stay for the night.</h2>
@@ -1381,14 +1381,14 @@ body{background:#070711;color:var(--bone);font-weight:400;}
       <p class="lead" data-rv="up">ritxx is the main hub for everything I love to enjoy: music, movies, anime and manga, gathered behind a single gate.</p>
       <p class="body" data-rv="up">Pick a path below. Listen to a soundtrack, sit down for a film or an episode, or lose yourself in a manga. Nothing here is in a hurry.</p>
       <a class="arrowlink" href="#pathways" data-rv="fade" data-cursor>
-        <span>Choose a realm</span>
+        <span>Choose a sector</span>
         <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
       </a>
     </div>
   </div>
   <div class="gate-stats" data-rv="up">
-    <div><b>03</b><span>Realms</span></div>
-    <div><b>01</b><span>Hub</span></div>
+    <div><b>03</b><span>Sectors</span></div>
+    <div><b>01</b><span>Network</span></div>
     <div><b>24/7</b><span>Open</span></div>
     <div><b>∞</b><span>Stories</span></div>
   </div>
@@ -1412,7 +1412,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
     </span>
   </div>
   <div class="sec-head" data-rv="fade">
-    <span class="k"><b>02</b> — The Realms</span><span class="rule"></span><span class="k jp">庭園</span>
+    <span class="k"><b>02</b> — The Sectors</span><span class="rule"></span><span class="k jp">庭園</span>
   </div>
   <div class="apps-note" data-rv="up">
     <span class="tag">New</span>
@@ -1458,7 +1458,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
     </a>
     <a class="card" href="https://ritxx-read.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none" data-rv="up" data-view="2" data-cursor>
       <div class="card-fr" data-frame>
-        <div class="realm-mark realm-mark--manga" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ritxxMangaGradient" x1="22" y1="25" x2="98" y2="98" gradientUnits="userSpaceOnUse"><stop stop-color="#64e7ff"/><stop offset=".5" stop-color="#a879ff"/><stop offset="1" stop-color="#ff55c8"/></linearGradient></defs><path d="M19 30c15-7 28-5 41 4v67c-14-9-28-11-41-5V30Z" fill="#0d1026" stroke="url(#ritxxMangaGradient)" stroke-width="4" stroke-linejoin="round"/><path d="M101 30c-15-7-28-5-41 4v67c14-9 28-11 41-5V30Z" fill="#11132d" stroke="url(#ritxxMangaGradient)" stroke-width="4" stroke-linejoin="round"/><path d="M28 42c9-3 17-1 24 3v5c-7-4-15-6-24-3v-5Zm0 13c9-3 17-1 24 3v5c-7-4-15-6-24-3v-5Zm40-10c7-4 15-6 24-3v5c-9-3-17-1-24 3v-5Zm0 13c7-4 15-6 24-3v5c-9-3-17-1-24 3v-5Z" fill="#e8e5ff"/><path d="m60 23 2.5 6L69 32l-6.5 2.5L60 41l-2.5-6.5L51 32l6.5-3L60 23Z" fill="#ff62d1"/></svg></div>
+        <div class="realm-mark realm-mark--manga" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ritxxMangaGradient" x1="22" y1="25" x2="98" y2="98" gradientUnits="userSpaceOnUse"><stop stop-color="#64e7ff"/><stop offset=".5" stop-color="#00f0ff"/><stop offset="1" stop-color="#ff0055"/></linearGradient></defs><path d="M19 30c15-7 28-5 41 4v67c-14-9-28-11-41-5V30Z" fill="#080a13" stroke="url(#ritxxMangaGradient)" stroke-width="4" stroke-linejoin="round"/><path d="M101 30c-15-7-28-5-41 4v67c14-9 28-11 41-5V30Z" fill="#0c1019" stroke="url(#ritxxMangaGradient)" stroke-width="4" stroke-linejoin="round"/><path d="M28 42c9-3 17-1 24 3v5c-7-4-15-6-24-3v-5Zm0 13c9-3 17-1 24 3v5c-7-4-15-6-24-3v-5Zm40-10c7-4 15-6 24-3v5c-9-3-17-1-24 3v-5Zm0 13c7-4 15-6 24-3v5c-9-3-17-1-24 3v-5Z" fill="#e8e5ff"/><path d="m60 23 2.5 6L69 32l-6.5 2.5L60 41l-2.5-6.5L51 32l6.5-3L60 23Z" fill="#00f0ff"/></svg></div>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:48.0%; --gy:16.8%; --gr:20%; --gt:7.3s; --gt2:11.2s; --gc1:rgba(255,138,104,.52); --gc2:rgba(208,54,36,.24)"></i>
         <div class="card-lab"><b>Manga</b><span class="jp">漫画</span></div>
@@ -1483,42 +1483,42 @@ body{background:#070711;color:var(--bone);font-weight:400;}
     </span>
   </div>
   <div class="sec-head" data-rv="fade">
-    <span class="k"><b>03</b> — The Path</span><span class="rule"></span><span class="k jp">手業</span>
+    <span class="k"><b>03</b> — The Network</span><span class="rule"></span><span class="k jp">手業</span>
   </div>
   <div class="cur-head">
-    <h2 class="display h-sec" data-rv="up">Three realms. One hub. Endless nights.</h2>
-    <p class="body-lg" data-rv="up">Every realm is a walk of its own. Arrive at the gate, choose your path, and come back whenever you want something new.</p>
+    <h2 class="display h-sec" data-rv="up">Three sectors. One network. Endless nights.</h2>
+    <p class="body-lg" data-rv="up">Every sector has its own signal. Jack in, choose your route, and come back whenever the city calls.</p>
   </div>
   <div class="cur" id="cur">
     <div class="les" data-les="0" data-cursor>
       <span class="k">01</span>
-      <h3>Arrive at the Gate<em class="jp">山門</em></h3>
-      <p>ritxx is the front door to everything else.</p>
-      <span class="t">Realm 01</span><i class="bar"></i>
+      <h3>Enter the Grid<em class="jp">山門</em></h3>
+      <p>Your gateway to the Ritxx network.</p>
+      <span class="t">Sector 01</span><i class="bar"></i>
     </div>
     <div class="les" data-les="1" data-cursor>
       <span class="k">02</span>
       <h3>Music<em class="jp">音楽</em></h3>
       <p>Albums, playlists and soundtracks to listen to.</p>
-      <span class="t">Realm 02</span><i class="bar"></i>
+      <span class="t">Sector 02</span><i class="bar"></i>
     </div>
     <div class="les" data-les="2" data-cursor>
       <span class="k">03</span>
       <h3>Movies &amp; Anime<em class="jp">映画</em></h3>
-      <p>The ken watch club: films and series for every night.</p>
-      <span class="t">Realm 03</span><i class="bar"></i>
+      <p>Ritxx Watch: films and series for every night.</p>
+      <span class="t">Sector 03</span><i class="bar"></i>
     </div>
     <div class="les" data-les="3" data-cursor>
       <span class="k">04</span>
       <h3>Manga<em class="jp">漫画</em></h3>
       <p>Chapters to read, one page at a time.</p>
-      <span class="t">Realm 04</span><i class="bar"></i>
+      <span class="t">Sector 04</span><i class="bar"></i>
     </div>
     <div class="les" data-les="4" data-cursor>
       <span class="k">05</span>
       <h3>Return Anytime<em class="jp">朱月</em></h3>
-      <p>The gate stays open. The light is always different.</p>
-      <span class="t">Realm 05</span><i class="bar"></i>
+      <p>The network stays live. The city never looks the same.</p>
+      <span class="t">Sector 05</span><i class="bar"></i>
     </div>
   </div>
 </section>
@@ -1542,7 +1542,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
   </div>
   <div class="eyebrow" data-rv="fade">ritxx — always open</div>
   <h2 class="display" data-rv="up">See you<br>at the gate</h2>
-  <p class="body-lg" data-rv="up">The gate never closes. Come back tonight for a soundtrack, a film, or the next chapter.</p>
+  <p class="body-lg" data-rv="up">The signal never sleeps. Return for a new soundtrack, a film, or your next chapter.</p>
   <a class="cta" href="https://ritxx-listen.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" data-rv="fade" data-cursor>
     <i></i><span>Start listening</span>
     <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg>
@@ -1579,20 +1579,20 @@ body{background:#070711;color:var(--bone);font-weight:400;}
       <li><a class="apk-foot" href="https://github.com/ken-ritxx/ritxx-watch/releases" target="_blank" rel="noopener" data-cursor>Movies &amp; Anime — Android app (APK)</a></li>
     </ul></div>
 
-    <div><h4>Hub</h4><ul>
+    <div><h4>Network</h4><ul>
       <li><a href="#gate" data-cursor>About</a></li>
-      <li><a href="#pathways" data-cursor>Realms</a></li>
-      <li><a href="#lessons" data-cursor>The Path</a></li>
+      <li><a href="#pathways" data-cursor>Sectors</a></li>
+      <li><a href="#lessons" data-cursor>The Network</a></li>
     </ul></div>
     <div><h4>Elsewhere</h4><ul>
-      <li><a href="https://github.com/ken-ritxx?tab=repositories" target="_blank" rel="noopener" data-cursor>GitHub — ken-ritxx</a></li>
-      <li><a href="#top" data-cursor>Back to top</a></li>
+      <li><a href="https://github.com/ken-ritxx?tab=repositories" target="_blank" rel="noopener" data-cursor>GitNetwork — ken-ritxx</a></li>
+      <li><a href="#top" data-cursor>Back to the grid</a></li>
     </ul></div>
   </div>
   <div class="foot-base">
     <span>© 2026 ritxx</span>
     <span class="jp">静けさは一つの技である</span>
-    <span>Listen · Watch · Read</span>
+    <span>CONNECT · WATCH · READ</span>
   </div>
 </footer>
 
