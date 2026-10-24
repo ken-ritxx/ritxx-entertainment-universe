@@ -425,6 +425,20 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   white-space:nowrap; }
 .apk-dl svg{ width:9px; height:11px; flex:none; }
 .apk-dl:hover{ background:rgba(224,35,28,.30); border-color:#e0231c; }
+.apk-dl .apk-new{ font-style:normal; font-size:8px; letter-spacing:.28em; text-transform:uppercase;
+  color:#05070a; background:#e0231c; padding:.3em .55em; border-radius:2px; font-weight:600; }
+
+/* — "new apps are here" announcement strip, above the realms */
+.apps-note{ display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  margin:0 0 clamp(18px,3vh,30px); padding:.75em 1.1em;
+  border:1px solid rgba(224,35,28,.35); background:rgba(224,35,28,.07); border-radius:2px; }
+.apps-note .tag{ flex:none; font-size:9px; letter-spacing:.3em; text-transform:uppercase;
+  color:#05070a; background:#e0231c; padding:.4em .75em; border-radius:2px; font-weight:600; }
+.apps-note p{ margin:0; font-size:11px; letter-spacing:.08em; color:var(--bone-dim); }
+.apps-note p b{ color:var(--bone); font-weight:500; }
+.apps-note-links{ display:flex; gap:10px; margin-left:auto; flex-wrap:wrap; }
+.apps-note .apk-dl{ font-size:9px; padding:.55em .85em; }
+@media (max-width:760px){ .apps-note-links{ margin-left:0; } }
 
 
 /* — chapter III: curriculum */
@@ -1065,6 +1079,20 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   <div class="sec-head" data-rv="fade">
     <span class="k"><b>02</b> — The Realms</span><span class="rule"></span><span class="k jp">庭園</span>
   </div>
+  <div class="apps-note" data-rv="up">
+    <span class="tag">New</span>
+    <p><b>The ritxx Android apps are here</b> — music, movies &amp; anime, right on your phone.</p>
+    <span class="apps-note-links">
+      <span class="apk-dl" data-apk="https://github.com/ken-ritxx/ritxxplays-muisc-v.2.4.3/releases" data-cursor role="button" tabindex="0" aria-label="Download the ritxx music Android app">
+        <svg viewBox="0 0 9 11" fill="none" aria-hidden="true"><path d="M4.5 0v6.6M1.6 4l2.9 2.9L7.4 4M0 9.7h9" stroke="#e0231c" stroke-width="1.2"/></svg>
+        Music APK
+      </span>
+      <span class="apk-dl" data-apk="/__l5e/assets-v1/a805909a-d43e-4820-ad52-3be4e4b45bca/ritxx-watch.apk" data-cursor role="button" tabindex="0" aria-label="Download the ritxx Movies &amp; Anime Android app">
+        <svg viewBox="0 0 9 11" fill="none" aria-hidden="true"><path d="M4.5 0v6.6M1.6 4l2.9 2.9L7.4 4M0 9.7h9" stroke="#e0231c" stroke-width="1.2"/></svg>
+        Watch APK
+      </span>
+    </span>
+  </div>
   <div class="cards" id="cards">
     <a class="card" href="https://ritxx-listen.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none" data-rv="up" data-view="0" data-cursor>
       <div class="card-fr" data-frame>
@@ -1075,7 +1103,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
         <div class="card-meta"><span>Listen — ritxx music</span>
           <span class="apk-dl" data-apk="https://github.com/ken-ritxx/ritxxplays-muisc-v.2.4.3/releases" data-cursor role="button" tabindex="0" aria-label="Download the ritxx music Android app">
             <svg viewBox="0 0 9 11" fill="none" aria-hidden="true"><path d="M4.5 0v6.6M1.6 4l2.9 2.9L7.4 4M0 9.7h9" stroke="#e0231c" stroke-width="1.2"/></svg>
-            Download APK
+            Download APK<i class="apk-new">new</i>
           </span><span>01 / 03</span></div>
 
     </a>
@@ -1088,7 +1116,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       <div class="card-meta"><span>Watch — ken watch club</span>
           <span class="apk-dl" data-apk="/__l5e/assets-v1/a805909a-d43e-4820-ad52-3be4e4b45bca/ritxx-watch.apk" data-cursor role="button" tabindex="0" aria-label="Download the ritxx Movies &amp; Anime Android app">
             <svg viewBox="0 0 9 11" fill="none" aria-hidden="true"><path d="M4.5 0v6.6M1.6 4l2.9 2.9L7.4 4M0 9.7h9" stroke="#e0231c" stroke-width="1.2"/></svg>
-            Download APK
+            Download APK<i class="apk-new">new</i>
           </span><span>02 / 03</span></div>
     </a>
     <a class="card" href="https://ritxx-read.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none" data-rv="up" data-view="2" data-cursor>
