@@ -2385,7 +2385,7 @@ const DPR_CAP      = qn('dpr', COARSE ? .95 : 1.25);
 /* the renderer trades resolution for frame rate on its own — the scene is
    fill-bound (five big alpha-blended veils plus a bloom chain), so pixels
    are the only knob worth turning on unknown hardware */
-const PERF = { scale: COARSE ? .76 : (LOW ? .82 : .88), acc: 0, n: 0, locked: qs('adapt', '1') === '0' };
+const PERF = { scale: COARSE ? .76 : (LOW ? .82 : .88), acc: 0, n: 0, locked: COARSE || qs('adapt', '1') === '0' };
 
 function initGL() {
   if (qs('nogl', '0') !== '0' || !window.THREE) throw new Error('webgl disabled');
@@ -4780,6 +4780,7 @@ function render() {
   }
 }
 
+let lastSceneRender = 0;
 function frame(now) {
   if (!running) return;
   const raw = (now - tPrev) / 1000 || 0;
@@ -4806,8 +4807,11 @@ function frame(now) {
   }
 
   applyCamera();
-  updateWorld(dt);
-  render();
+  if (!COARSE || now - lastSceneRender >= 1000 / 40) {
+    updateWorld(dt);
+    render();
+    lastSceneRender = now;
+  }
   queue();
 }
 const TIMER = qs('driver', 'raf') === 'timer';
