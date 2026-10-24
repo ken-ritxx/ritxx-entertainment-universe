@@ -201,6 +201,24 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .hero-top .eyebrow .dot{ width:5px; height:5px; border-radius:50%; background:var(--vermilion); box-shadow:0 0 10px var(--vermilion); }
 .hero h1{ margin-bottom:18px; }
 .hero-sub{ max-width:322px; text-shadow:0 1px 26px rgba(3,6,8,.95); }
+/* ritxx editorial identity; keep the original scene and camera intact. */
+.hero-top{ max-width:560px; }
+.hero h1{ font-family:'Onest',sans-serif; font-size:88px; line-height:1; letter-spacing:0; font-weight:600; }
+.hero h1 .ritxx-accent{ color:var(--vermilion); }
+.hero-sub{ border-left:2px solid var(--vermilion); padding-left:16px; max-width:350px; }
+.hero .peek, .hero-side{ display:none; }
+.chapters{ border-top-color:var(--vermilion); }
+.chip .num{ font-family:'Onest',sans-serif; font-size:22px; color:var(--vermilion); }
+#pathways .cards{ gap:24px; }
+#pathways .card-fr{ aspect-ratio:4/3; border-radius:4px; }
+#pathways .card-lab b{ font-family:'Onest',sans-serif; font-size:22px; font-weight:600; letter-spacing:0; text-transform:none; }
+.apps-note{ border:0; border-left:3px solid var(--vermilion); border-radius:0; background:var(--ink-2); padding:18px; }
+@media(max-width:760px){
+  .hero-top{ max-width:100%; }
+  .hero h1{ font-size:64px; }
+  #pathways .card-lab b{ font-size:20px; }
+  .card-meta{ flex-wrap:wrap; gap:10px; letter-spacing:0; }
+}
 .hero-spacer{ flex:1 1 auto; min-height:clamp(140px,26vh,300px); }
 .hero-foot{ padding-bottom:clamp(22px,4.2vh,42px); position:relative; z-index:2; }
 .hero-cue{ display:flex; align-items:center; justify-content:flex-end; gap:12px; margin-bottom:14px;
@@ -986,11 +1004,9 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   <div class="hero-top">
     <div class="eyebrow" data-rv="fade"><span class="dot"></span> Welcome to ritxx</div>
     <h1 class="display h-hero">
-      <span class="mask-line"><span>One gate.</span></span>
-      <span class="mask-line"><span>Every story</span></span>
-      <span class="mask-line"><span>you love.</span></span>
+      <span class="mask-line"><span>rit<span class="ritxx-accent">xx</span></span></span>
     </h1>
-    <p class="hero-sub body" data-rv="up">Music to listen to, movies and anime to watch, manga to read — all from one place.</p>
+    <p class="hero-sub body" data-rv="up">Your soundtrack. Your next obsession.<br>Music, movies, anime &amp; manga.</p>
   </div>
 
   <div class="hero-spacer"></div>
@@ -1042,7 +1058,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <span class="k"><b>01</b> — The Hub</span><span class="rule"></span><span class="k jp">山門</span>
   </div>
   <div class="gate-grid">
-    <h2 class="display h-sec" data-rv="up">Three realms, one gate left open.</h2>
+    <h2 class="display h-sec" data-rv="up">Press play.<br>Stay a little longer.</h2>
     <div class="gate-copy">
       <p class="lead" data-rv="up">ritxx is the main hub for everything I love to enjoy: music, movies, anime and manga, gathered behind a single gate.</p>
       <p class="body" data-rv="up">Pick a path below. Listen to a soundtrack, sit down for a film or an episode, or lose yourself in a manga. Nothing here is in a hurry.</p>
