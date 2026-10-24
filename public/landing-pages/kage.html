@@ -1237,7 +1237,7 @@ body{background:#070711;color:var(--bone);font-weight:400;}
 }
 @media(prefers-reduced-motion:reduce){
   .ritxx-reveal{opacity:1;translate:none;transition:none;}
-  #cyber-bg{display:none;}
+  #cyber-bg{transform:none;}
 }
 
 /* Brand marks and scroll-linked 3D depth. */
@@ -5237,6 +5237,9 @@ else addEventListener('DOMContentLoaded', boot);
   if(!ctx) return;
   var w=0,h=0,scale=1,raf=0,last=0,sky=null,bg=null,glow=null,rain=[];
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var moonImg=new Image(),moonLoaded=false;
+  moonImg.decoding='async';moonImg.onload=function(){moonLoaded=true;draw(performance.now());};
+  moonImg.src='secret-pathways-assets/generated/lucy-david-moon.jpeg';
   var seed=314159;
   function rand(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;}
   function resize(){
@@ -5267,8 +5270,18 @@ else addEventListener('DOMContentLoaded', boot);
   }
   function draw(now){
     ctx.setTransform(scale,0,0,scale,0,0);
-    ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
-    if(sky)ctx.drawImage(sky,0,h*.43,w,h*.42);
+    ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+    if(moonLoaded){
+      var cover=Math.max(w/moonImg.width,h/moonImg.height)*1.06;
+      var mw=moonImg.width*cover,mh=moonImg.height*cover;
+      ctx.save();ctx.filter='saturate(1.12) contrast(1.04)';ctx.drawImage(moonImg,(w-mw)/2,(h-mh)/2,mw,mh);ctx.restore();
+      var shade=ctx.createLinearGradient(0,0,0,h);
+      shade.addColorStop(0,'rgba(5,5,16,.10)');shade.addColorStop(.52,'rgba(5,5,16,.22)');shade.addColorStop(1,'rgba(5,5,16,.42)');
+      ctx.fillStyle=shade;ctx.fillRect(0,0,w,h);
+    }else{
+      ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
+      if(sky)ctx.drawImage(sky,0,h*.43,w,h*.42);
+    }
     var horizon=h*.73,pulse=.5+.5*Math.sin(now*.0007);
     var haze=ctx.createLinearGradient(0,horizon-55,0,horizon+60);
     haze.addColorStop(0,'rgba(7,6,17,0)');haze.addColorStop(.52,'rgba(45,42,130,'+(.13+pulse*.08)+')');haze.addColorStop(1,'rgba(7,6,17,0)');
