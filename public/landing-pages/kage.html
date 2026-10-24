@@ -955,31 +955,15 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   .mask-line > span,.word{ opacity:1 !important; transform:none !important; }
 }
 
-
-/* Ritxx-specific additions on the original Kage interface */
-.fg{display:none!important;}
-#cyber-bg{position:fixed;inset:0;width:100%;height:100%;display:none;z-index:1;pointer-events:none;}
-.no-webgl #cyber-bg{display:block;}
-.realm-mark{
-  position:absolute;z-index:2;left:50%;top:15%;width:clamp(88px,10vw,132px);
-  aspect-ratio:1;translate:-50% 0;display:grid;place-items:center;
-  filter:drop-shadow(0 14px 32px rgba(0,0,0,.34));
-}
+/* Ritxx additions: preserve its marks and Lucy/David closing image on the Kage scene. */
+.realm-mark{position:absolute;z-index:2;left:50%;top:15%;width:clamp(88px,10vw,132px);aspect-ratio:1;translate:-50% 0;display:grid;place-items:center;filter:drop-shadow(0 14px 32px rgba(0,0,0,.34));}
 .realm-mark svg{width:100%;height:100%;overflow:visible;}
 .realm-mark--music{filter:drop-shadow(0 0 20px rgba(216,0,255,.32));}
 .realm-mark--watch{filter:drop-shadow(0 0 20px rgba(242,51,72,.28));}
 .realm-mark--manga{filter:drop-shadow(0 0 20px rgba(100,231,255,.28));}
-#pathways .card-fr{position:relative;overflow:hidden;border-radius:14px;}
-#pathways .card:nth-child(1) .card-fr{background-image:linear-gradient(180deg,rgba(3,6,9,.02) 28%,rgba(3,6,9,.70) 100%),url('secret-pathways-assets/generated/kage-approach.webp');background-position:center;background-size:cover;}
-#pathways .card:nth-child(2) .card-fr{background-image:linear-gradient(180deg,rgba(3,6,9,.02) 28%,rgba(3,6,9,.70) 100%),url('secret-pathways-assets/generated/kage-lantern-court.webp');background-position:center;background-size:cover;}
-#pathways .card:nth-child(3) .card-fr{background-image:linear-gradient(180deg,rgba(3,6,9,.02) 28%,rgba(3,6,9,.70) 100%),url('secret-pathways-assets/generated/kage-moonwater.webp');background-position:center;background-size:cover;}
-#pathways .card-fr::after{background:linear-gradient(transparent 40%,rgba(4,6,9,.82));}
-#eternity{
-  background:linear-gradient(90deg,rgba(5,7,10,.82),rgba(5,7,10,.38) 64%,rgba(5,7,10,.14)),
-    url('secret-pathways-assets/generated/lucy-david-moon.jpeg') center 48%/cover no-repeat;
-}
+#eternity{background:linear-gradient(90deg,rgba(5,7,10,.72),rgba(5,7,10,.30) 65%,rgba(5,7,10,.08)),url('secret-pathways-assets/generated/lucy-david-moon.jpeg') center 48%/cover no-repeat;}
 #eternity .body-lg{text-shadow:0 2px 18px rgba(0,0,0,.82);}
-@media(max-width:560px){.realm-mark{width:106px;top:14%;}#pathways .card-fr{border-radius:12px;}}
+@media(max-width:560px){.realm-mark{width:106px;top:14%;}}
 
 </style>
 </head>
@@ -987,7 +971,6 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       data-layout-curriculum="b" data-layout-closing="b" data-layout-footer="b">
 
 <canvas id="gl" aria-hidden="true"></canvas>
-<canvas id="cyber-bg" aria-hidden="true"></canvas>
 <div id="vignette"></div>
 <div id="grain"></div>
 <div class="cur-dot" id="cursor"></div>
@@ -996,11 +979,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 <div id="pre">
   <svg class="pre-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47"/><circle cx="50" cy="50" r="49"/></svg>
   <div class="pre-in">
-    <div class="pre-jp">RITXX // NETWORK</div>
+    <div class="pre-jp">ritxx の 門</div>
     <div class="pre-word" aria-label="ritxx"><span>r</span><span>i</span><span>t</span><span>x</span><span>x</span></div>
     <div class="pre-bar"><i id="pre-fill"></i></div>
     <div class="pre-meta">
-      <span>CONNECT · WATCH · READ</span><b><span id="pre-pct">0</span>%</b>
+      <span>Listen · Watch · Read</span><b><span id="pre-pct">0</span>%</b>
     </div>
   </div>
 </div>
@@ -1019,8 +1002,8 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <a class="nav-link" href="https://ritxx-listen.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" data-cursor><span>Music</span><span class="alt">音楽</span></a>
     <a class="nav-link" href="https://ritxx-ken-watch-club.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" data-cursor><span>Movies &amp; Anime</span><span class="alt">映画</span></a>
     <a class="nav-link" href="https://ritxx-read.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" data-cursor><span>Manga</span><span class="alt">漫画</span></a>
-    <a class="nav-link" href="#pathways" data-cursor><span>Sectors</span><span class="alt">世界</span></a>
-    <a class="nav-link" href="https://github.com/ken-ritxx?tab=repositories" target="_blank" rel="noopener" data-cursor><span>GitNetwork</span><span class="alt">コード</span></a>
+    <a class="nav-link" href="#pathways" data-cursor><span>Realms</span><span class="alt">世界</span></a>
+    <a class="nav-link" href="https://github.com/ken-ritxx?tab=repositories" target="_blank" rel="noopener" data-cursor><span>GitHub</span><span class="alt">コード</span></a>
   </nav>
   <button class="nav-burger" aria-label="Menu" data-cursor><i></i><i></i></button>
 </header>
@@ -1030,7 +1013,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 <!-- ============================================================ hero -->
 <section class="hero" id="hero" data-cam="0">
   <div class="hero-top">
-    <div class="eyebrow" data-rv="fade"><span class="dot"></span> THE GRID IS LIVE</div>
+    <div class="eyebrow" data-rv="fade"><span class="dot"></span> The gate is open</div>
     <h1 class="display h-hero">
       <span class="mask-line"><span>rit<span class="ritxx-accent">xx</span></span></span>
     </h1>
@@ -1040,7 +1023,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   <div class="hero-spacer"></div>
 
   <div class="hero-foot">
-    <div class="hero-cue" data-rv="fade"><span>Scroll to jack in</span><span class="track"><i></i></span></div>
+    <div class="hero-cue" data-rv="fade"><span>Scroll to enter</span><span class="track"><i></i></span></div>
     <div class="chapters" id="chips">
       <div class="chip" data-chip="0" data-rv="up" data-cursor onclick="window.top.location.href='https://ritxx-listen.ichigokurosaki8398.workers.dev/'"><span class="num">01</span>
         <span class="tx"><b>Listen</b><p>Stream the music that sets the mood.</p></span></div>
@@ -1058,7 +1041,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
          runs on down behind the caption instead of stopping at the frame -->
     <span class="peek-fr" data-frame></span>
     <span class="peek-play"><svg viewBox="0 0 22 22" fill="none"><path d="M8 5.6 16.4 11 8 16.4z" fill="#dfe7e0"/></svg></span>
-    <span class="peek-cap"><b class="jp">山門</b><i>NEON GATEWAY — SECURE ACCESS</i></span>
+    <span class="peek-cap"><b class="jp">山門</b><i>Sanmon — before the bell</i></span>
   </a>
 
   <div class="word-fb" aria-hidden="true">RITXX</div>
@@ -1083,7 +1066,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     </span>
   </div>
   <div class="sec-head" data-rv="fade">
-    <span class="k"><b>01</b> — The Network</span><span class="rule"></span><span class="k jp">山門</span>
+    <span class="k"><b>01</b> — The Hub</span><span class="rule"></span><span class="k jp">山門</span>
   </div>
   <div class="gate-grid">
     <h2 class="display h-sec" data-rv="up">Press play.<br>Stay for the night.</h2>
@@ -1091,14 +1074,14 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       <p class="lead" data-rv="up">ritxx is the main hub for everything I love to enjoy: music, movies, anime and manga, gathered behind a single gate.</p>
       <p class="body" data-rv="up">Pick a path below. Listen to a soundtrack, sit down for a film or an episode, or lose yourself in a manga. Nothing here is in a hurry.</p>
       <a class="arrowlink" href="#pathways" data-rv="fade" data-cursor>
-        <span>Choose a sector</span>
+        <span>Choose a realm</span>
         <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
       </a>
     </div>
   </div>
   <div class="gate-stats" data-rv="up">
-    <div><b>03</b><span>Sectors</span></div>
-    <div><b>01</b><span>Network</span></div>
+    <div><b>03</b><span>Realms</span></div>
+    <div><b>01</b><span>Hub</span></div>
     <div><b>24/7</b><span>Open</span></div>
     <div><b>∞</b><span>Stories</span></div>
   </div>
@@ -1122,7 +1105,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     </span>
   </div>
   <div class="sec-head" data-rv="fade">
-    <span class="k"><b>02</b> — The Sectors</span><span class="rule"></span><span class="k jp">庭園</span>
+    <span class="k"><b>02</b> — The Realms</span><span class="rule"></span><span class="k jp">庭園</span>
   </div>
   <div class="apps-note" data-rv="up">
     <span class="tag">New</span>
@@ -1141,6 +1124,8 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   <div class="cards" id="cards">
     <a class="card" href="https://ritxx-listen.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none" data-rv="up" data-view="0" data-cursor>
       <div class="card-fr" data-frame>
+        <div class="realm-mark realm-mark--manga" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ritxxMangaGradient" x1="22" y1="25" x2="98" y2="98" gradientUnits="userSpaceOnUse"><stop stop-color="#64e7ff"/><stop offset=".5" stop-color="#00f0ff"/><stop offset="1" stop-color="#ff0055"/></linearGradient></defs><path d="M19 30c15-7 28-5 41 4v67c-14-9-28-11-41-5V30Z" fill="#080a13" stroke="url(#ritxxMangaGradient)" stroke-width="4" stroke-linejoin="round"/><path d="M101 30c-15-7-28-5-41 4v67c14-9 28-11 41-5V30Z" fill="#0c1019" stroke="url(#ritxxMangaGradient)" stroke-width="4" stroke-linejoin="round"/><path d="M28 42c9-3 17-1 24 3v5c-7-4-15-6-24-3v-5Zm0 13c9-3 17-1 24 3v5c-7-4-15-6-24-3v-5Zm40-10c7-4 15-6 24-3v5c-9-3-17-1-24 3v-5Zm0 13c7-4 15-6 24-3v5c-9-3-17-1-24 3v-5Z" fill="#e8e5ff"/><path d="m60 23 2.5 6L69 32l-6.5 2.5L60 41l-2.5-6.5L51 32l6.5-3L60 23Z" fill="#00f0ff"/></svg></div>
+        <div class="realm-mark realm-mark--watch" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="54" fill="#08090f" stroke="#202332" stroke-width="2"/><circle cx="60" cy="60" r="32" stroke="#f4f4f7" stroke-width="12"/><path d="M55 46c0-3 3-5 6-3l18 13c3 2 3 5 0 7L61 76c-3 2-6 0-6-3V46Z" fill="#fff"/><path d="m79 18 3.5 7.5L90 29l-7.5 3.5L79 40l-3.5-7.5L68 29l7.5-3.5L79 18Z" fill="#fff"/><path d="m96 39 2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z" fill="#fff"/><g fill="#f23348"><circle cx="25" cy="81" r="2.3"/><circle cx="18" cy="90" r="2"/><circle cx="28" cy="96" r="1.8"/><circle cx="39" cy="101" r="1.6"/><circle cx="15" cy="78" r="1.6"/><circle cx="20" cy="104" r="1.4"/></g></svg></div>
         <div class="realm-mark realm-mark--music" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ritxxMusicGradient" x1="19" y1="17" x2="101" y2="96" gradientUnits="userSpaceOnUse"><stop stop-color="#8500ff"/><stop offset=".52" stop-color="#df00ed"/><stop offset="1" stop-color="#ff1684"/></linearGradient></defs><path d="M25 20c0-9 8-14 16-9l58 34c8 5 8 14 0 19L39 99c-8 5-14 1-14-8V20Z" fill="url(#ritxxMusicGradient)"/><path d="M55 39v43a15 15 0 1 1-10-14V29l26 15" stroke="#0b0814" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="84" r="15" fill="url(#ritxxMusicGradient)"/></svg></div>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:80.2%; --gy:23.9%; --gr:22%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(255,142,108,.50); --gc2:rgba(212,56,38,.24)"></i>
@@ -1155,7 +1140,6 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     </a>
     <a class="card" href="https://ritxx-ken-watch-club.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none" data-rv="up" data-view="1" data-cursor>
       <div class="card-fr" data-frame>
-        <div class="realm-mark realm-mark--watch" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="54" fill="#08090f" stroke="#202332" stroke-width="2"/><circle cx="60" cy="60" r="32" stroke="#f4f4f7" stroke-width="12"/><path d="M55 46c0-3 3-5 6-3l18 13c3 2 3 5 0 7L61 76c-3 2-6 0-6-3V46Z" fill="#fff"/><path d="m79 18 3.5 7.5L90 29l-7.5 3.5L79 40l-3.5-7.5L68 29l7.5-3.5L79 18Z" fill="#fff"/><path d="m96 39 2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z" fill="#fff"/><g fill="#f23348"><circle cx="25" cy="81" r="2.3"/><circle cx="18" cy="90" r="2"/><circle cx="28" cy="96" r="1.8"/><circle cx="39" cy="101" r="1.6"/><circle cx="15" cy="78" r="1.6"/><circle cx="20" cy="104" r="1.4"/></g></svg></div>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow glow--flame" style="--gx:70.5%; --gy:47.2%; --gr:14%; --gt:3.7s; --gt2:5.3s; --gc1:rgba(255,198,124,.62); --gc2:rgba(226,118,40,.30)"></i>
         <div class="card-lab"><b>Movies &amp; Anime</b><span class="jp">映画</span></div>
@@ -1168,7 +1152,6 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     </a>
     <a class="card" href="https://ritxx-read.ichigokurosaki8398.workers.dev/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none" data-rv="up" data-view="2" data-cursor>
       <div class="card-fr" data-frame>
-        <div class="realm-mark realm-mark--manga" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ritxxMangaGradient" x1="22" y1="25" x2="98" y2="98" gradientUnits="userSpaceOnUse"><stop stop-color="#64e7ff"/><stop offset=".5" stop-color="#00f0ff"/><stop offset="1" stop-color="#ff0055"/></linearGradient></defs><path d="M19 30c15-7 28-5 41 4v67c-14-9-28-11-41-5V30Z" fill="#080a13" stroke="url(#ritxxMangaGradient)" stroke-width="4" stroke-linejoin="round"/><path d="M101 30c-15-7-28-5-41 4v67c14-9 28-11 41-5V30Z" fill="#0c1019" stroke="url(#ritxxMangaGradient)" stroke-width="4" stroke-linejoin="round"/><path d="M28 42c9-3 17-1 24 3v5c-7-4-15-6-24-3v-5Zm0 13c9-3 17-1 24 3v5c-7-4-15-6-24-3v-5Zm40-10c7-4 15-6 24-3v5c-9-3-17-1-24 3v-5Zm0 13c7-4 15-6 24-3v5c-9-3-17-1-24 3v-5Z" fill="#e8e5ff"/><path d="m60 23 2.5 6L69 32l-6.5 2.5L60 41l-2.5-6.5L51 32l6.5-3L60 23Z" fill="#00f0ff"/></svg></div>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:48.0%; --gy:16.8%; --gr:20%; --gt:7.3s; --gt2:11.2s; --gc1:rgba(255,138,104,.52); --gc2:rgba(208,54,36,.24)"></i>
         <div class="card-lab"><b>Manga</b><span class="jp">漫画</span></div>
@@ -1193,42 +1176,42 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     </span>
   </div>
   <div class="sec-head" data-rv="fade">
-    <span class="k"><b>03</b> — The Network</span><span class="rule"></span><span class="k jp">手業</span>
+    <span class="k"><b>03</b> — The Path</span><span class="rule"></span><span class="k jp">手業</span>
   </div>
   <div class="cur-head">
-    <h2 class="display h-sec" data-rv="up">Three sectors. One network. Endless nights.</h2>
-    <p class="body-lg" data-rv="up">Every sector has its own signal. Jack in, choose your route, and come back whenever the city calls.</p>
+    <h2 class="display h-sec" data-rv="up">Three realms. One hub. Endless nights.</h2>
+    <p class="body-lg" data-rv="up">Every realm is a walk of its own. Arrive at the gate, choose your path, and come back whenever you want something new.</p>
   </div>
   <div class="cur" id="cur">
     <div class="les" data-les="0" data-cursor>
       <span class="k">01</span>
-      <h3>Enter the Grid<em class="jp">山門</em></h3>
-      <p>Your gateway to the Ritxx network.</p>
-      <span class="t">Sector 01</span><i class="bar"></i>
+      <h3>Arrive at the Gate<em class="jp">山門</em></h3>
+      <p>ritxx is the front door to everything else.</p>
+      <span class="t">Realm 01</span><i class="bar"></i>
     </div>
     <div class="les" data-les="1" data-cursor>
       <span class="k">02</span>
       <h3>Music<em class="jp">音楽</em></h3>
       <p>Albums, playlists and soundtracks to listen to.</p>
-      <span class="t">Sector 02</span><i class="bar"></i>
+      <span class="t">Realm 02</span><i class="bar"></i>
     </div>
     <div class="les" data-les="2" data-cursor>
       <span class="k">03</span>
       <h3>Movies &amp; Anime<em class="jp">映画</em></h3>
-      <p>Ritxx Watch: films and series for every night.</p>
-      <span class="t">Sector 03</span><i class="bar"></i>
+      <p>The ken watch club: films and series for every night.</p>
+      <span class="t">Realm 03</span><i class="bar"></i>
     </div>
     <div class="les" data-les="3" data-cursor>
       <span class="k">04</span>
       <h3>Manga<em class="jp">漫画</em></h3>
       <p>Chapters to read, one page at a time.</p>
-      <span class="t">Sector 04</span><i class="bar"></i>
+      <span class="t">Realm 04</span><i class="bar"></i>
     </div>
     <div class="les" data-les="4" data-cursor>
       <span class="k">05</span>
       <h3>Return Anytime<em class="jp">朱月</em></h3>
-      <p>The network stays live. The city never looks the same.</p>
-      <span class="t">Sector 05</span><i class="bar"></i>
+      <p>The gate stays open. The light is always different.</p>
+      <span class="t">Realm 05</span><i class="bar"></i>
     </div>
   </div>
 </section>
@@ -1289,20 +1272,20 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       <li><a class="apk-foot" href="https://github.com/ken-ritxx/ritxx-watch/releases" target="_blank" rel="noopener" data-cursor>Movies &amp; Anime — Android app (APK)</a></li>
     </ul></div>
 
-    <div><h4>Network</h4><ul>
+    <div><h4>Hub</h4><ul>
       <li><a href="#gate" data-cursor>About</a></li>
-      <li><a href="#pathways" data-cursor>Sectors</a></li>
-      <li><a href="#lessons" data-cursor>The Network</a></li>
+      <li><a href="#pathways" data-cursor>Realms</a></li>
+      <li><a href="#lessons" data-cursor>The Path</a></li>
     </ul></div>
     <div><h4>Elsewhere</h4><ul>
-      <li><a href="https://github.com/ken-ritxx?tab=repositories" target="_blank" rel="noopener" data-cursor>GitNetwork — ken-ritxx</a></li>
-      <li><a href="#top" data-cursor>Back to the grid</a></li>
+      <li><a href="https://github.com/ken-ritxx?tab=repositories" target="_blank" rel="noopener" data-cursor>GitHub — ken-ritxx</a></li>
+      <li><a href="#top" data-cursor>Back to top</a></li>
     </ul></div>
   </div>
   <div class="foot-base">
     <span>© 2026 ritxx</span>
     <span class="jp">静けさは一つの技である</span>
-    <span>CONNECT · WATCH · READ</span>
+    <span>Listen · Watch · Read</span>
   </div>
 </footer>
 
@@ -2385,11 +2368,11 @@ const DPR_CAP      = qn('dpr', COARSE ? .95 : 1.25);
 /* the renderer trades resolution for frame rate on its own — the scene is
    fill-bound (five big alpha-blended veils plus a bloom chain), so pixels
    are the only knob worth turning on unknown hardware */
-const PERF = { scale: COARSE ? .76 : (LOW ? .82 : .88), acc: 0, n: 0, locked: COARSE || qs('adapt', '1') === '0' };
+const PERF = { scale: COARSE ? .76 : .88, acc: 0, n: 0, locked: COARSE || qs('adapt', '1') === '0' };
 
 function initGL() {
   if (qs('nogl', '0') !== '0' || !window.THREE) throw new Error('webgl disabled');
-  renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false, alpha: false, powerPreference: 'high-performance' });
+  renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !WANT_POST, alpha: false, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, DPR_CAP));
   /* updateStyle stays on: the stylesheet sizes the canvas at 100% of the
      initial containing block, which is the very box that runs wide on a
@@ -2399,7 +2382,7 @@ function initGL() {
   renderer.outputEncoding = WANT_POST ? THREE.LinearEncoding : THREE.sRGBEncoding;
   renderer.toneMapping = WANT_POST ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
-  renderer.setClearColor(0x05050a, 1);
+  renderer.setClearColor(0x05070a, 1);
   if (WANT_SHADOW) { renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; }
   maxAniso = renderer.capabilities.getMaxAnisotropy();
   scene = new THREE.Scene();
@@ -2409,8 +2392,8 @@ function initGL() {
      moved the hall by 0.18 of a luminance unit, the fog colour moves it
      properly. And it reaches by distance, so the foreground does not
      follow it down. */
-  scene.fog = new THREE.FogExp2(0x05050a, 0.008);
-  scene.background = new THREE.Color(0x05050a);
+  scene.fog = new THREE.FogExp2(0x050a0e, 0.0168);
+  scene.background = new THREE.Color(0x060a0d);
   camera = new THREE.PerspectiveCamera(36, vpW() / vpH(), .35, 220);
   scene.add(camera);
 }
@@ -4709,7 +4692,6 @@ function resize() {
 
 function updateWorld(dt) {
   WORLD.uT.value = clock;
-  updateCyberCity(dt);
 
   /* the focused chapter warms the lanterns and swells the disc */
   RIG.focusAmt = damp(RIG.focusAmt, RIG.focus >= 0 ? 1 : 0, 5, dt);
@@ -4818,155 +4800,51 @@ const TIMER = qs('driver', 'raf') === 'timer';
 function queue() { TIMER ? setTimeout(() => frame(performance.now()), 16) : requestAnimationFrame(frame); }
 
 /* ======================================================== 14 · booting */
-function cyberTexture() {
-  const c=document.createElement('canvas');c.width=256;c.height=512;
-  const x=c.getContext('2d'),r=mulberry32(81723);
-  const g=x.createLinearGradient(0,0,256,512);
-  g.addColorStop(0,'#080a13');g.addColorStop(.55,'#111425');g.addColorStop(1,'#070810');
-  x.fillStyle=g;x.fillRect(0,0,256,512);
-  x.strokeStyle='rgba(0,240,255,.15)';x.lineWidth=2;
-  for(let y=0;y<512;y+=64){x.beginPath();x.moveTo(0,y);x.lineTo(256,y);x.stroke();}
-  for(let y=20;y<500;y+=30)for(let xx=16;xx<246;xx+=25){
-    if(r()<.47)continue;
-    x.fillStyle=r()<.5?'rgba(0,240,255,.82)':'rgba(255,0,85,.82)';
-    x.fillRect(xx,y,5+r()*8,9+r()*7);
-  }
-  x.fillStyle='rgba(255,255,255,.10)';x.fillRect(12,10,232,3);
-  const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;
-  t.encoding=THREE.sRGBEncoding;t.anisotropy=Math.min(4,maxAniso);return t;
-}
-function cyberSignTexture(label) {
-  const c=document.createElement('canvas');c.width=512;c.height=160;
-  const x=c.getContext('2d');
-  x.fillStyle='#080a14';x.fillRect(0,0,512,160);
-  x.strokeStyle='rgba(0,240,255,.9)';x.lineWidth=3;x.strokeRect(4,4,504,152);
-  x.fillStyle='#00f0ff';x.font='bold 38px system-ui,sans-serif';x.textAlign='center';
-  x.fillText(label,256,76);
-  x.fillStyle='#ff0055';x.font='bold 15px system-ui,sans-serif';
-  x.fillText('RITXX // SECURE NETWORK',256,120);
-  const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;return t;
-}
-function cyberpunkCity() {
-  scene.background=new THREE.Color(0x05050a);
-  scene.fog=new THREE.FogExp2(0x05050a,.008);
-  const city=new THREE.Group();city.name='RITXX CYBER DISTRICT';scene.add(city);
-  const texture=cyberTexture();
-  const buildingMat=new THREE.MeshBasicMaterial({map:texture,color:0xffffff});
-  const cyan=new THREE.MeshBasicMaterial({color:0x00f0ff});
-  const magenta=new THREE.MeshBasicMaterial({color:0xff0055});
-  const glass=new THREE.MeshBasicMaterial({color:0x00b7d2,transparent:true,opacity:.12,side:THREE.DoubleSide,depthWrite:false});
-  const road=new THREE.Mesh(new THREE.PlaneGeometry(54,150),new THREE.MeshBasicMaterial({color:0x070811}));
-  road.rotation.x=-Math.PI/2;road.position.set(0,-1.25,-38);city.add(road);
-  const railMat=new THREE.LineBasicMaterial({color:0x00f0ff,transparent:true,opacity:.52});
-  const rails=[];
-  for(let side of [-1,1]){
-    const pts=[new THREE.Vector3(side*2.8,-1.19,18),new THREE.Vector3(side*2.8,-1.19,-96)];
-    const geo=new THREE.BufferGeometry().setFromPoints(pts);const line=new THREE.Line(geo,railMat);city.add(line);rails.push(line);
-  }
-  const rng=mulberry32(12119);
-  for(let row=0;row<(COARSE?12:18);row++){
-    const z=12-row*4.55;
-    for(const side of [-1,1]){
-      const width=3.4+rng()*4.8,height=12+rng()*24,depth=3+rng()*5;
-      const x=side*(8+rng()*15);
-      const geom=new THREE.BoxGeometry(width,height,depth);
-      const tower=new THREE.Mesh(geom,buildingMat);
-      tower.position.set(x,-1.25+height/2,z);city.add(tower);
-      if(COARSE?row%4===0:row%3===0){
-        const edgeMat=new THREE.LineBasicMaterial({color:(row+side)%3===0?0xff0055:0x00f0ff,transparent:true,opacity:.50});
-        const edge=new THREE.LineSegments(new THREE.EdgesGeometry(geom),edgeMat);
-        edge.position.copy(tower.position);city.add(edge);
-      }
-      if(row%4===0){
-        const antenna=new THREE.Mesh(new THREE.CylinderGeometry(.035,.07,2.2,5),side>0?cyan:magenta);
-        antenna.position.set(x,-1.25+height+1.1,z);city.add(antenna);
-      }
-    }
-  }
-  const gates=[];
-  [-8,-30,-53,-76].forEach((z,i)=>{
-    const frame=new THREE.Group();frame.position.z=z;city.add(frame);
-    const edge=i%2?magenta:cyan;
-    const pieces=[
-      [0,5.7,0,13.5,.22,.28],[-6.65,0,0,.22,11.4,.28],[6.65,0,0,.22,11.4,.28],
-      [0,-5.58,0,13.5,.22,.28],[-6.2,10.4,0,.18,2.4,.22],[6.2,10.4,0,.18,2.4,.22]
-    ];
-    pieces.forEach(p=>{const m=new THREE.Mesh(new THREE.BoxGeometry(p[3],p[4],p[5]),edge);m.position.set(p[0],p[1],p[2]);frame.add(m);});
-    const pane=new THREE.Mesh(new THREE.PlaneGeometry(12.8,10.5),glass);pane.position.set(0,0,-.22);frame.add(pane);
-    const ring=new THREE.Mesh(new THREE.TorusGeometry(3.2,.075,8,48),edge);ring.position.set(0,.1,.12);frame.add(ring);
-    const sign=new THREE.Mesh(new THREE.PlaneGeometry(5.7,1.8),new THREE.MeshBasicMaterial({map:cyberSignTexture('SECTOR 0'+(i+1)),transparent:false}));
-    sign.position.set(0,8.0,.2);frame.add(sign);
-    gates.push({frame,ring,sign,phase:i*.8});
-  });
-  [-11,-34,-58,-82].forEach((z,i)=>{
-    for(const side of [-1,1]){
-      const p=new THREE.Mesh(new THREE.CylinderGeometry(.35,.62,4.8,7),i%2?magenta:cyan);
-      p.position.set(side*5.4,1.2,z);city.add(p);
-      const hoop=new THREE.Mesh(new THREE.TorusGeometry(.52,.045,6,24),i%2?cyan:magenta);
-      hoop.rotation.x=Math.PI/2;hoop.position.set(side*5.4,2.4,z);city.add(hoop);
-    }
-  });
-  [-6,-28,-50,-73].forEach((z,i)=>{
-    const cable=new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-14,14,z+5),new THREE.Vector3(-7,18+Math.sin(i)*1.5,z),
-      new THREE.Vector3(0,15,z-4),new THREE.Vector3(8,19,z-8),new THREE.Vector3(15,13,z-12)
-    ]);
-    const wire=new THREE.Mesh(new THREE.TubeGeometry(cable,32,.035,5,false),i%2?magenta:cyan);
-    city.add(wire);
-    const gantry=new THREE.Mesh(new THREE.BoxGeometry(31,.22,.32),i%2?cyan:magenta);
-    gantry.position.set(0,14.5,z-4);city.add(gantry);
-  });
-  const n=COARSE?44:88,positions=new Float32Array(n*6),colors=new Float32Array(n*6),drops=[];
-  for(let i=0;i<n;i++){
-    const x=(rng()-.5)*42,y=-1+rng()*28,z=8-rng()*106,len=.7+rng()*2.4,speed=11+rng()*28,hot=rng()>.5;
-    drops.push({x,y,z,len,speed});
-    const color=hot?[1,.03,.28]:[.02,.86,1],k=i*6;
-    colors.set(color,k);colors.set(color,k+3);
-    positions.set([x,y,z,x-.035,y-len,z],k);
-  }
-  const rainGeo=new THREE.BufferGeometry();
-  rainGeo.setAttribute('position',new THREE.BufferAttribute(positions,3));
-  rainGeo.setAttribute('color',new THREE.BufferAttribute(colors,3));
-  const rainMat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.74,blending:THREE.AdditiveBlending});
-  city.add(new THREE.LineSegments(rainGeo,rainMat));
-  const pn=COARSE?28:64,pPos=new Float32Array(pn*3),particles=[];
-  for(let i=0;i<pn;i++){const p={x:(rng()-.5)*38,y:-1+rng()*24,z:6-rng()*100,v:.4+rng()*1.8,phase:rng()*TAU};particles.push(p);pPos.set([p.x,p.y,p.z],i*3);}
-  const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));
-  const pMat=new THREE.PointsMaterial({color:0xff0055,size:.12,transparent:true,opacity:.78,blending:THREE.AdditiveBlending});
-  city.add(new THREE.Points(pGeo,pMat));
-  WORLD.cyber={rain:{geometry:rainGeo,positions,drops},particles:{geometry:pGeo,positions:pPos,items:particles},gates};
-}
-function updateCyberCity(dt) {
-  const fx=WORLD.cyber;if(!fx)return;
-  const nearest=fx.gates.reduce((best,g)=>Math.abs(g.frame.position.z-camera.position.z)<Math.abs(best.frame.position.z-camera.position.z)?g:best,fx.gates[0]);
-  const sector=clamp(Math.round(RIG.smooth),1,5);
-  const label='SECTOR 0'+sector;
-  if(nearest.activeLabel!==label){
-    if(nearest.sign.material.map)nearest.sign.material.map.dispose();
-    nearest.sign.material.map=cyberSignTexture(label);
-    nearest.sign.material.needsUpdate=true;
-    nearest.activeLabel=label;
-  }
-  fx.rain.drops.forEach((d,i)=>{
-    d.y-=d.speed*dt;if(d.y<-2){d.y=27;d.x=(Math.random()-.5)*42;d.z=8-Math.random()*106;}
-    const k=i*6;fx.rain.positions[k]=d.x;fx.rain.positions[k+1]=d.y;fx.rain.positions[k+2]=d.z;
-    fx.rain.positions[k+3]=d.x-.035;fx.rain.positions[k+4]=d.y-d.len;fx.rain.positions[k+5]=d.z;
-  });
-  fx.rain.geometry.attributes.position.needsUpdate=true;
-  fx.particles.items.forEach((p,i)=>{
-    p.y+=p.v*dt;if(p.y>24){p.y=-1;p.x=(Math.random()-.5)*38;p.z=6-Math.random()*100;}
-    fx.particles.positions[i*3]=p.x;fx.particles.positions[i*3+1]=p.y;fx.particles.positions[i*3+2]=p.z;
-  });
-  fx.particles.geometry.attributes.position.needsUpdate=true;
-  fx.gates.forEach(g=>{g.ring.rotation.z+=dt*.14;g.frame.children[4].material.opacity=.68+.22*Math.sin(clock*1.8+g.phase);});
-}
-
-
 const JOBS = [
-  ['Loading the display type', () => document.fonts && Promise.race([document.fonts.load('600 320px Wordmark'), new Promise(r => setTimeout(r, 1600))])],
-  ['Starting the render core', () => { initGL(); WORLD.uT = { value: 0 }; buildRig(); }],
-  ['Building the neon district', () => cyberpunkCity()],
-  ['Preparing the camera portals', () => { initPost(); buildCards(); measure(); }]
+  ['Reading the type', () => document.fonts && Promise.race([document.fonts.load('600 320px Wordmark'), new Promise(r => setTimeout(r, 2500))])],
+  ['Pouring the ground', () => { initGL(); WORLD.uT = { value: 0 }; buildRig(); buildLights(); }],
+  ['Cutting the approach', () => buildShell()],
+  ['Raising the hall', () => buildTemple()],
+  ['Hanging the moon', () => buildMoon()],
+  ['Setting the gate', () => buildTorii()],
+  ['Placing the stones', () => {
+    buildRocks();
+    buildLantern(7.4, -7.0, 1.15); buildLantern(-7.6, -5.2, 1.0);
+    /* The pairs flanking the flight were given flat heights — 2 and PODIUM —
+       and the flight does not reach either at those depths, so both pairs hung
+       in the air. Solve the step under each one from the same constants the
+       treads and cheeks are built from, and they stand on the rail instead of
+       beside it. */
+    const stepAt   = z => Math.max(0, (STAIR_Z0 - z) / STAIR_RUN - .5);
+    const cheekTop = z => (stepAt(z) + 1) * (PODIUM / STEPS) + .45;
+    const cheekX   = z => (STAIR_W + (STEPS - stepAt(z)) * .052) / 2 + .45;
+    [-14.4, -23.5].forEach((z, i) => {
+      const sc = i ? .95 : .90;
+      buildLantern( cheekX(z), z, sc, cheekTop(z));
+      buildLantern(-cheekX(z), z, sc, cheekTop(z));
+    });
+  }],
+  ['Growing the maples', () => {
+    buildMaple(71, 12.6, -13.0, 1.05); buildMaple(72, -11.8, -9.4, .95);
+    buildMaple(73, 9.2, -19.0, .82);   buildMaple(74, -14.5, -17.5, 1.0);
+    buildMaple(75, 16.5, -6.0, .88);
+  }],
+  ['Painting the near grass', () => buildForeground()],
+  ['Cutting the word', () => buildWordmark()],
+  ['Raising the mist', () => { buildAtmosphere(); buildLeafFall(); buildWisps(); }],
+  ['Polishing the water', () => {
+    initPost(); buildCards(); buildCardCloth();
+    WORLD.fg.forEach(m => m.layers.set(1));
+    WORD.glyphs.forEach(m => m.layers.set(2));
+    if (WORLD.rain) WORLD.rain.layers.set(1);
+    /* the fall is all around the rig, including behind it — mirroring it
+       would drop leaves into the water that are nowhere near the water */
+    if (WORLD.leaves) WORLD.leaves.mesh.layers.set(1);
+    WORLD.ripples.forEach(r => r.layers.set(1));
+    layoutWord(); measure();
+    /* nothing that casts a shadow ever moves, so bake it once */
+    if (WANT_SHADOW && WORLD.key) { WORLD.key.shadow.autoUpdate = false; WORLD.key.shadow.needsUpdate = true; }
+  }]
 ];
 
 function boot() {
@@ -5050,133 +4928,6 @@ else addEventListener('DOMContentLoaded', boot);
     el.addEventListener('click', go);
     el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') go(e); });
   });
-</script>
-<script>
-(function(){
-  var canvas=document.getElementById('cyber-bg');
-  if(!canvas) return;
-  var ctx=canvas.getContext('2d',{alpha:false});
-  if(!ctx) return;
-  var w=0,h=0,scale=1,raf=0,last=0,sky=null,bg=null,glow=null,rain=[];
-  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var moonImg=new Image(),moonLoaded=false;
-  moonImg.decoding='async';moonImg.onload=function(){moonLoaded=true;draw(performance.now());};
-  moonImg.src='secret-pathways-assets/generated/lucy-david-moon.jpeg';
-  var seed=314159;
-  function rand(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;}
-  function resize(){
-    w=window.innerWidth; h=window.innerHeight;
-    scale=Math.min(window.devicePixelRatio||1,1.15);
-    canvas.width=Math.max(1,Math.round(w*scale));
-    canvas.height=Math.max(1,Math.round(h*scale));
-    ctx.setTransform(scale,0,0,scale,0,0);
-    bg=ctx.createLinearGradient(0,0,w,h);
-    bg.addColorStop(0,'#080611');bg.addColorStop(.52,'#0b0b1c');bg.addColorStop(1,'#080611');
-    glow=ctx.createRadialGradient(w*.53,h*.65,0,w*.53,h*.65,Math.max(w,h)*.68);
-    glow.addColorStop(0,'rgba(45,55,120,.20)');glow.addColorStop(.48,'rgba(93,26,130,.12)');glow.addColorStop(1,'rgba(7,6,17,0)');
-    sky=document.createElement('canvas');sky.width=canvas.width;sky.height=Math.ceil(h*.42*scale);
-    var sc=sky.getContext('2d');sc.setTransform(scale,0,0,scale,0,0);
-    var sh=h*.42,x=-8;
-    while(x<w+12){
-      var bw=26+rand()*65,bh=sh*(.22+rand()*.68),top=sh-bh,shade=rand();
-      sc.fillStyle=shade>.65?'#111127':shade>.32?'#0d1022':'#0b0d1b';sc.fillRect(x,top,bw,bh);
-      sc.fillStyle=shade>.5?'rgba(83,224,255,.48)':'rgba(237,66,218,.44)';
-      for(var wy=top+9;wy<sh-6;wy+=11)for(var wx=x+6;wx<x+bw-4;wx+=12)if(rand()>.58)sc.fillRect(wx,wy,2,3);
-      if(rand()>.45){sc.fillStyle='rgba(96,225,255,.45)';sc.fillRect(x+bw*.42,Math.max(2,top-14),3,14);}
-      x+=bw+3;
-    }
-    seed=271828;rain=[];
-    var n=Math.max(28,Math.min(120,Math.round(w/7)));
-    for(var i=0;i<n;i++)rain.push({x:rand()*w,y:rand()*h,len:8+rand()*24,speed:90+rand()*240,hue:rand()>.5?190:300,alpha:.12+rand()*.36});
-    last=0;draw(0);
-  }
-  function draw(now){
-    ctx.setTransform(scale,0,0,scale,0,0);
-    ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
-    if(moonLoaded){
-      var cover=Math.max(w/moonImg.width,h/moonImg.height)*1.06;
-      var mw=moonImg.width*cover,mh=moonImg.height*cover;
-      ctx.save();ctx.filter='saturate(1.12) contrast(1.04)';ctx.drawImage(moonImg,(w-mw)/2,(h-mh)/2,mw,mh);ctx.restore();
-      var shade=ctx.createLinearGradient(0,0,0,h);
-      shade.addColorStop(0,'rgba(5,5,16,.10)');shade.addColorStop(.52,'rgba(5,5,16,.22)');shade.addColorStop(1,'rgba(5,5,16,.42)');
-      ctx.fillStyle=shade;ctx.fillRect(0,0,w,h);
-    }else{
-      ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
-      if(sky)ctx.drawImage(sky,0,h*.43,w,h*.42);
-    }
-    var horizon=h*.73,pulse=.5+.5*Math.sin(now*.0007);
-    var haze=ctx.createLinearGradient(0,horizon-55,0,horizon+60);
-    haze.addColorStop(0,'rgba(7,6,17,0)');haze.addColorStop(.52,'rgba(45,42,130,'+(.13+pulse*.08)+')');haze.addColorStop(1,'rgba(7,6,17,0)');
-    ctx.fillStyle=haze;ctx.fillRect(0,horizon-55,w,115);
-    ctx.save();ctx.lineWidth=1;
-    for(var v=-10;v<=10;v++){ctx.strokeStyle=v%2?'rgba(80,211,255,.20)':'rgba(237,66,218,.22)';ctx.beginPath();ctx.moveTo(w*.5+v*2,horizon);ctx.lineTo(w*.5+v*w*.09,h);ctx.stroke();}
-    var travel=(now*.00013)%1;
-    for(var j=0;j<11;j++){var q=(j/11+travel)%1,y=horizon+(q*q)*(h-horizon);ctx.strokeStyle='rgba(98,202,255,'+(.08+q*.2)+')';ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
-    ctx.restore();
-    if(!reduced){
-      for(var k=0;k<rain.length;k++){var d=rain[k];ctx.strokeStyle='hsla('+d.hue+',100%,72%,'+d.alpha+')';ctx.lineWidth=d.hue===190?1:.8;ctx.beginPath();ctx.moveTo(d.x,d.y);ctx.lineTo(d.x-2,d.y+d.len);ctx.stroke();}
-      ctx.fillStyle='rgba(113,224,255,.6)';ctx.fillRect(0,(now*.035)%h,w,1);
-    }
-  }
-  function tick(now){
-    raf=0;if(document.hidden||!document.documentElement.classList.contains('no-webgl'))return;
-    if(now-last<40){raf=requestAnimationFrame(tick);return;}
-    var elapsed=last?Math.min(now-last,80):40;last=now;
-    if(!reduced)for(var i=0;i<rain.length;i++){rain[i].y+=rain[i].speed*elapsed/1000;if(rain[i].y>h){rain[i].y=-rain[i].len;rain[i].x=rand()*w;}}
-    draw(now);if(!reduced)raf=requestAnimationFrame(tick);
-  }
-  function start(){if(!document.documentElement.classList.contains('no-webgl')){if(raf)cancelAnimationFrame(raf);raf=0;return;}if(reduced){draw(0);return;}if(!raf&&!document.hidden)raf=requestAnimationFrame(tick);}
-  window.addEventListener('resize',resize,{passive:true});
-  document.addEventListener('visibilitychange',function(){if(document.hidden){if(raf)cancelAnimationFrame(raf);raf=0;}else start();});
-  new MutationObserver(start).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
-  resize();start();
-})();
-</script>
-
-<script>
-/* RITXX_SCROLL_MOTION_INIT — reveal on entry and add subtle scroll parallax. */
-(function(){
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce||!('IntersectionObserver' in window))return;
-  document.documentElement.classList.add('ritxx-motion-ready');
-  var selectors=[
-    '#hero .hero-top','#hero .hero-cue','#chips .chip',
-    '#gate .sec-head','#gate .gate-grid > *','#gate .gate-stats > div',
-    '#pathways .sec-head','#pathways .apps-note','#pathways .card',
-    '#lessons .sec-head','#lessons .cur-head > *','#lessons .les',
-    '#eternity > .eyebrow','#eternity > h2','#eternity > p','#eternity > .cta',
-    '.foot .foot-grid > *','.foot .foot-base'
-  ].join(',');
-  var nodes=Array.prototype.slice.call(document.querySelectorAll(selectors));
-  var observer=new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(!entry.isIntersecting)return;
-      entry.target.classList.add('is-visible');observer.unobserve(entry.target);
-    });
-  },{threshold:.08,rootMargin:'0px 0px -8% 0px'});
-  nodes.forEach(function(el,index){
-    el.classList.add('ritxx-reveal');
-    el.style.setProperty('--ritxx-delay',(index%4)*70+'ms');
-    observer.observe(el);
-  });
-  var depthNodes=Array.prototype.slice.call(document.querySelectorAll('#chips .chip,#pathways .card-fr,#lessons .les'));
-  var frame=0;
-  function updateDepth(){
-    frame=0;var mid=window.innerHeight*.5;
-    depthNodes.forEach(function(el,index){
-      var r=el.getBoundingClientRect();
-      var relative=(r.top+r.height*.5-mid)/Math.max(window.innerHeight,1);
-      var shift=Math.max(-1,Math.min(1,relative))*((index%2)?-10:10);
-      el.style.setProperty('--ritxx-shift',shift.toFixed(1)+'px');
-      el.style.setProperty('--ritxx-rotate-x',(Math.max(-1,Math.min(1,relative))*-2.4).toFixed(1)+'deg');
-    });
-    document.documentElement.style.setProperty('--ritxx-bg-shift',(-Math.min(window.scrollY*.018,20)).toFixed(1)+'px');
-  }
-  function requestDepth(){if(!frame)frame=requestAnimationFrame(updateDepth);}
-  window.addEventListener('scroll',requestDepth,{passive:true});
-  window.addEventListener('resize',requestDepth,{passive:true});
-  updateDepth();
-})();
 </script>
 </body>
 </html>
