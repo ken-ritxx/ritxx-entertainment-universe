@@ -12,16 +12,16 @@
 <style>
 /* ============================================================= tokens */
 :root{
-  --ink:#05070a;          /* page black */
-  --ink-2:#0a0e12;        /* raised black */
-  --bone:#dfe7e0;         /* the pale sage white of the wordmark */
-  --bone-dim:#aab4ad;
-  --muted:#78837c;
-  --line:rgba(223,231,224,.13);
-  --line-soft:rgba(223,231,224,.07);
-  --vermilion:#e0231c;
-  --ember:#ff5a3c;
-  --gold:#c9a24a;
+  --ink:#080611;          /* page black */
+  --ink-2:#100b1b;        /* raised black */
+  --bone:#f2edff;         /* the pale sage white of the wordmark */
+  --bone-dim:#c4b8d8;
+  --muted:#867b99;
+  --line:rgba(219,185,255,.16);
+  --line-soft:rgba(219,185,255,.08);
+  --vermilion:#e448d3;
+  --ember:#b450ff;
+  --gold:#b99aff;
   --pad:clamp(20px, 3.4vw, 56px);
   --nav-h:84px;
   --ease:cubic-bezier(.22,.61,.36,1);
@@ -953,6 +953,33 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
   [data-rv]{ opacity:1 !important; transform:none !important; }
   .mask-line > span,.word{ opacity:1 !important; transform:none !important; }
+}
+
+/* Ritxx signature: ultraviolet and orchid accents over midnight ink. */
+.nav::before{ background:rgba(8,6,17,.72); }
+.nav-link.on::after{
+  height:2px; border-radius:99px;
+  box-shadow:0 0 12px rgba(228,72,211,.55);
+}
+#pathways .card-fr{
+  border:1px solid rgba(214,147,255,.24);
+  border-radius:18px;
+  box-shadow:0 18px 52px rgba(0,0,0,.38),0 0 24px rgba(180,80,255,.08);
+  transition:transform .42s var(--ease-out),border-color .42s,box-shadow .42s;
+}
+@media(hover:hover){
+  #pathways .card-fr:hover{
+    transform:translateY(-5px);
+    border-color:rgba(228,72,211,.62);
+    box-shadow:0 22px 62px rgba(0,0,0,.44),0 0 30px rgba(180,80,255,.18);
+  }
+}
+#pathways .card-meta span:first-child{ color:#e7caff; }
+.apps-note{
+  border:1px solid rgba(214,147,255,.2);
+  border-radius:16px;
+  border-left:1px solid rgba(214,147,255,.2);
+  box-shadow:0 12px 34px rgba(0,0,0,.2);
 }
 </style>
 </head>
