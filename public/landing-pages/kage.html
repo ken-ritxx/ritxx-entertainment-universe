@@ -2669,17 +2669,17 @@ const vpH = () => document.documentElement.clientHeight || innerHeight;
 let renderer, scene, camera, maxAniso = 1;
 const HI = qs('q', COARSE ? 'low' : 'high');
 const LOW = HI === 'low';
-const WANT_POST    = qs('post', LOW ? '0' : '1') !== '0';
-const WANT_SHADOW  = qs('shadow', LOW ? '0' : '1') !== '0';
-const DPR_CAP      = qn('dpr', COARSE ? .95 : 1.8);
+const WANT_POST    = qs('post', '0') !== '0';
+const WANT_SHADOW  = qs('shadow', '0') !== '0';
+const DPR_CAP      = qn('dpr', COARSE ? .95 : 1.25);
 /* the renderer trades resolution for frame rate on its own — the scene is
    fill-bound (five big alpha-blended veils plus a bloom chain), so pixels
    are the only knob worth turning on unknown hardware */
-const PERF = { scale: COARSE ? .76 : (LOW ? .82 : 1), acc: 0, n: 0, locked: qs('adapt', '1') === '0' };
+const PERF = { scale: COARSE ? .76 : (LOW ? .82 : .88), acc: 0, n: 0, locked: qs('adapt', '1') === '0' };
 
 function initGL() {
   if (qs('nogl', '0') !== '0' || !window.THREE) throw new Error('webgl disabled');
-  renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !WANT_POST && !LOW, alpha: false, powerPreference: 'high-performance' });
+  renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false, alpha: false, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, DPR_CAP));
   /* updateStyle stays on: the stylesheet sizes the canvas at 100% of the
      initial containing block, which is the very box that runs wide on a
@@ -5150,7 +5150,7 @@ function cyberpunkCity() {
     const geo=new THREE.BufferGeometry().setFromPoints(pts);const line=new THREE.Line(geo,railMat);city.add(line);rails.push(line);
   }
   const rng=mulberry32(12119);
-  for(let row=0;row<(COARSE?12:24);row++){
+  for(let row=0;row<(COARSE?12:18);row++){
     const z=12-row*4.55;
     for(const side of [-1,1]){
       const width=3.4+rng()*4.8,height=12+rng()*24,depth=3+rng()*5;
@@ -5158,7 +5158,7 @@ function cyberpunkCity() {
       const geom=new THREE.BoxGeometry(width,height,depth);
       const tower=new THREE.Mesh(geom,buildingMat);
       tower.position.set(x,-1.25+height/2,z);city.add(tower);
-      if(COARSE?row%4===0:row%2===0){
+      if(COARSE?row%4===0:row%3===0){
         const edgeMat=new THREE.LineBasicMaterial({color:(row+side)%3===0?0xff0055:0x00f0ff,transparent:true,opacity:.50});
         const edge=new THREE.LineSegments(new THREE.EdgesGeometry(geom),edgeMat);
         edge.position.copy(tower.position);city.add(edge);
@@ -5182,7 +5182,7 @@ function cyberpunkCity() {
     const ring=new THREE.Mesh(new THREE.TorusGeometry(3.2,.075,8,48),edge);ring.position.set(0,.1,.12);frame.add(ring);
     const sign=new THREE.Mesh(new THREE.PlaneGeometry(5.7,1.8),new THREE.MeshBasicMaterial({map:cyberSignTexture('SECTOR 0'+(i+1)),transparent:false}));
     sign.position.set(0,8.0,.2);frame.add(sign);
-    gates.push({frame,ring,phase:i*.8});
+    gates.push({frame,ring,sign,phase:i*.8});
   });
   [-11,-34,-58,-82].forEach((z,i)=>{
     for(const side of [-1,1]){
@@ -5202,7 +5202,7 @@ function cyberpunkCity() {
     const gantry=new THREE.Mesh(new THREE.BoxGeometry(31,.22,.32),i%2?cyan:magenta);
     gantry.position.set(0,14.5,z-4);city.add(gantry);
   });
-  const n=COARSE?44:150,positions=new Float32Array(n*6),colors=new Float32Array(n*6),drops=[];
+  const n=COARSE?44:88,positions=new Float32Array(n*6),colors=new Float32Array(n*6),drops=[];
   for(let i=0;i<n;i++){
     const x=(rng()-.5)*42,y=-1+rng()*28,z=8-rng()*106,len=.7+rng()*2.4,speed=11+rng()*28,hot=rng()>.5;
     drops.push({x,y,z,len,speed});
@@ -5215,7 +5215,7 @@ function cyberpunkCity() {
   rainGeo.setAttribute('color',new THREE.BufferAttribute(colors,3));
   const rainMat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.74,blending:THREE.AdditiveBlending});
   city.add(new THREE.LineSegments(rainGeo,rainMat));
-  const pn=COARSE?28:96,pPos=new Float32Array(pn*3),particles=[];
+  const pn=COARSE?28:64,pPos=new Float32Array(pn*3),particles=[];
   for(let i=0;i<pn;i++){const p={x:(rng()-.5)*38,y:-1+rng()*24,z:6-rng()*100,v:.4+rng()*1.8,phase:rng()*TAU};particles.push(p);pPos.set([p.x,p.y,p.z],i*3);}
   const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));
   const pMat=new THREE.PointsMaterial({color:0xff0055,size:.12,transparent:true,opacity:.78,blending:THREE.AdditiveBlending});
@@ -5224,6 +5224,15 @@ function cyberpunkCity() {
 }
 function updateCyberCity(dt) {
   const fx=WORLD.cyber;if(!fx)return;
+  const nearest=fx.gates.reduce((best,g)=>Math.abs(g.frame.position.z-camera.position.z)<Math.abs(best.frame.position.z-camera.position.z)?g:best,fx.gates[0]);
+  const sector=clamp(Math.round(RIG.smooth),1,5);
+  const label='SECTOR 0'+sector;
+  if(nearest.activeLabel!==label){
+    if(nearest.sign.material.map)nearest.sign.material.map.dispose();
+    nearest.sign.material.map=cyberSignTexture(label);
+    nearest.sign.material.needsUpdate=true;
+    nearest.activeLabel=label;
+  }
   fx.rain.drops.forEach((d,i)=>{
     d.y-=d.speed*dt;if(d.y<-2){d.y=27;d.x=(Math.random()-.5)*42;d.z=8-Math.random()*106;}
     const k=i*6;fx.rain.positions[k]=d.x;fx.rain.positions[k+1]=d.y;fx.rain.positions[k+2]=d.z;
